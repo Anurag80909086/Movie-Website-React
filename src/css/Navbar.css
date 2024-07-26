@@ -1,3 +1,4 @@
+/* Base styles */
 .navbar-container {
   background: var(--container_color_darker);
   border-radius: var(--container_borderRadius);
@@ -31,7 +32,6 @@
   border-bottom: 3px solid rgb(245, 120, 18);
   color: rgb(0, 255, 55);
 }
-
 #navbar li {
   padding: 0 10px;
   font-family: "Special Elite", system-ui;
@@ -54,7 +54,19 @@
   cursor: pointer;
   display: none;
 }
-#navbar #menuBar:active {
+#navbar #crossIcon {
+  color: rgb(255, 255, 255);
+  text-shadow: var(--text_shadow_dark);
+  font-size: 24px;
+  top: 25px;
+  right: 35px;
+  cursor: pointer;
+  display: none;
+}
+#navbar #crossIcon:active {
+  transform: scale(0.95);
+}
+#menuBar:active {
   transform: scale(0.95);
 }
 .searchSection {
@@ -83,10 +95,9 @@
   color: rgb(8, 253, 233);
 }
 .search-bar-container i:active {
-  transform: scale(0.95);
+  transform: scale(0.9);
   color: rgb(17, 187, 25);
 }
-
 .theme-container {
   display: flex;
   align-items: center;
@@ -94,18 +105,15 @@
   user-select: none;
   cursor: pointer;
 }
-
 .theme-container .theme-switch-wrapper {
   border: 1px solid white;
   background-color: rgb(0, 0, 0, 0.5);
-
   width: 42px;
   height: 23px;
   border-radius: 10px;
   padding: 0px 4px;
   position: relative;
 }
-
 .theme-container .theme-switch-wrapper .theme-switch {
   height: 15px;
   width: 15px;
@@ -116,7 +124,6 @@
   transform: translateY(-50%);
   transition: 0.4s ease;
 }
-
 .theme-container .theme-switch-wrapper .active {
   transform: translate(125%, -50%);
   transition: 0.4s ease;
@@ -125,7 +132,6 @@
 }
 
 /* this is responsive Section */
-
 @media screen and (max-width: 900px) {
   .navbar-container {
     gap: 15px;
@@ -134,7 +140,6 @@
     font-size: 15px;
   }
 }
-
 @media screen and (max-width: 750px) {
   .navbar-container {
     flex-direction: column;
@@ -152,27 +157,66 @@
     padding: 2px 4px;
   }
 }
-
 @media screen and (max-width: 600px) {
   #navbar li {
     font-size: 15px;
   }
 }
-
 @media screen and (max-width: 400px) {
   .navbar-container {
     flex-direction: row;
+    justify-content: center;
     gap: 15px;
   }
   #navbar {
+    background-color: rgb(0, 0, 0, 0.9);
+    position: fixed;
+    flex-direction: column;
+    border-radius: 16px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 95vw;
+    height: 97vh;
+    z-index: 99;
+    padding: 20px 5px;
     display: none;
+    animation: visible 0.2s linear 1;
+  }
+  @keyframes visible {
+    from {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(50%);
+    }
+    to {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(100%);
+    }
+  }
+  #navbar.visible {
+    display: flex;
+  }
+  #navbar li {
+    font-size: 5.5vw;
+  }
+  #navbar #crossIcon {
+    position: absolute;
+    display: flex;
   }
   #menuBar {
     display: flex;
-    font-size: 24px;
-    color: white;
+    font-size: 7vw;
   }
   .searchSection {
-    gap: 10px;
+    gap: 6px;
+  }
+  .search-bar-container {
+    padding: 3px;
+  }
+  .search-bar-container input {
+    width: 60vw;
+  }
+  .search-bar-container i {
+    font-size: 4.5vw;
   }
 }

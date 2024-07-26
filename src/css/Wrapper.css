@@ -41,11 +41,10 @@
 /* this is playing area */
 .playing_area {
   position: absolute;
-  z-index: 99;
+  z-index: 100;
   top: 0px;
   left: 0;
-  width: 100vw;
-  padding: 10px;
+  width: 100%;
 }
 
 .hide {

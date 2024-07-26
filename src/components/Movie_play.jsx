@@ -4,15 +4,22 @@ import ReactLoading from "react-loading";
 import MovieDetail from "./MovieDetail";
 import SeriesDetail from "./SeriesDetail";
 import { options, baseUrl } from "../api/apiConfig";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 
 function Movie_play() {
   const navigate = useNavigate();
   const [movie, setMovie] = useState();
+  const movieId = useParams();
+  const location = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
+
   function goBack() {
     navigate(-1);
   }
-  const movieId = useParams();
+
   function separateID(str) {
     const numberMatch = str.match(/\d+/);
     const letterMatch = str.match(/[A-Za-z]+/);
@@ -20,7 +27,9 @@ function Movie_play() {
     const movieType = letterMatch ? letterMatch[0] : null;
     return { movieID, movieType };
   }
+
   const { movieID, movieType } = separateID(movieId.movie);
+
   const getMovieData = async (type) => {
     try {
       const url = `${baseUrl}/${type}/${movieID}?language=en-US`;
@@ -65,4 +74,5 @@ function Movie_play() {
     </div>
   );
 }
+
 export default Movie_play;

@@ -2,7 +2,6 @@ export const API_KEY = "d7842d4e2f0bce6affa5474474495a03";
 export const baseUrl = "https://api.themoviedb.org/3";
 export const posterUrl = "https://image.tmdb.org/t/p/original";
 let page = 1;
-const pages = 2;
 export const options = {
   method: "GET",
   headers: {
@@ -45,12 +44,9 @@ export const onTheAirSeries = {
   title: "On The Air Series",
   url: `${baseUrl}/tv/on_the_air?language=en-US&page=${page}`,
 };
-export const arrivingTodaySeries = {
-  title: "Arriving Today Series",
-  url: `${baseUrl}/tv/airing_today?language=en-US&page=${page}`,
-};
-export const nowPlayingMovie = {
-  title: "Now Playing Movie",
+
+export const latestMovies = {
+  title: "Latest Movies",
   url: `${baseUrl}/movie/now_playing?language=en-US&page=${page}`,
 };
 export const upcommingMovie = {

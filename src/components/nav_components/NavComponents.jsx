@@ -1,17 +1,20 @@
 import React from "react";
 import CategoryRender from "./CategoryRender";
-import { Movie, Series, trendingAll } from "../../api/apiConfig";
+import { Movie, Series, trendingAll, latestMovies } from "../../api/apiConfig";
 
 export const Movies = () => {
   return <CategoryRender title={Movie.title} url={Movie.url} />;
 };
 
-export const Tv_Shows = () => {
-  return <CategoryRender title={Series.title} url={Tv_Shows.url} />;
+export const TvShows = () => {
+  return <CategoryRender title={Series.title} url={Series.url} />;
 };
 
 export const Trending = () => {
   return <CategoryRender title={trendingAll.title} url={trendingAll.url} />;
+};
+export const LatestMovies = () => {
+  return <CategoryRender title={latestMovies.title} url={latestMovies.url} />;
 };
 
 export const SearchResult = (props) => {
