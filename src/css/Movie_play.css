@@ -1,0 +1,292 @@
+.movieplay_container {
+  border-radius: var(--container_borderRadius);
+  box-shadow: var(--container_shadow_dark);
+  background: var(--container_color_darkest);
+  overflow: hidden;
+  position: relative;
+  height: 85vh;
+  width: 100%;
+  color: white;
+}
+.movieplay_container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(255, 255, 255, 0) 64%
+  );
+}
+.movieplay_container .poster_img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+.movieplay_container .backBtn {
+  position: absolute;
+  top: 15px;
+  left: 30px;
+  color: rgb(8, 253, 233);
+  text-shadow: 2px 2px 8px rgba(8, 253, 233, 0.699);
+  width: 30px;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 2;
+  transition: 0.3s ease;
+}
+.movieplay_container .backBtn:active {
+  transform: scale(90%);
+  color: rgba(255, 255, 255, 0.726);
+  transition: 0.3s ease;
+}
+/* ---- bigCard Wrapper Section ----*/
+.bigCard_wrapper {
+  width: 100%;
+  z-index: 1;
+  gap: 30px;
+  padding: 10px 50px;
+  border-radius: 16px;
+  flex-direction: row-reverse;
+  align-items: flex-start;
+}
+
+/* this is bigCard styling */
+.bigCard_wrapper .bigCard {
+  height: 340px;
+  width: 225px;
+  border-radius: 20px;
+  overflow: hidden;
+  transition: 0.2s ease-out;
+  cursor: pointer;
+  flex-shrink: 0;
+  box-shadow: var(--card_shadow_dark);
+}
+.bigCard_wrapper .bigCard:hover {
+  transform: scale(103%);
+  transition: 0.4s ease;
+}
+.bigCard_wrapper .bigCard img {
+  height: 100%;
+  width: 100%;
+}
+
+/* this is cDetails styling */
+.cDetails {
+  min-width: 30%;
+  min-height: 340px;
+  padding: 10px;
+  max-width: 45%;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  justify-content: space-between;
+  border-radius: 16px;
+  background-color: rgba(0, 0, 0, 0.712);
+  box-shadow: var(--card_shadow_dark);
+  overflow: hidden;
+}
+.cDetails .movieName {
+  font-size: 35px;
+}
+.cDetails .movieGenere {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+.cDetails .movieGenere span {
+  border-radius: 15px;
+  padding: 2px 15px;
+  font-size: 14px;
+  border: 2px solid rgb(16, 138, 187);
+}
+
+.cDetails .movieRelease,
+.movieDuration,
+.movieRating {
+  justify-content: left;
+  gap: 7px;
+  font-size: 14px;
+  font-weight: 600;
+}
+.movieRelease {
+  color: #42dcbd;
+}
+.movieDuration {
+  color: #ff607b;
+}
+.movieRating {
+  color: orange;
+}
+
+.cDetails .movieStory {
+  font-size: 12px;
+  color: rgb(209, 207, 207);
+  max-height: 93px;
+  overflow-y: scroll;
+}
+
+.cDetails .buttonSection {
+  gap: 15px;
+  margin-top: 10px;
+}
+.cDetails .buttonSection button {
+  border-radius: 18px;
+  padding: 3px 15px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* this is responsive section  */
+
+@media screen and (max-width: 900px) {
+  .bigCard_wrapper .bigCard {
+    height: 322px;
+    width: 215px;
+  }
+  .cDetails {
+    min-height: 322px;
+    max-width: 60%;
+  }
+  .cDetails .movieName {
+    font-size: 28px;
+  }
+  .cDetails .movieGenere {
+    gap: 5px;
+  }
+  .cDetails .movieGenere span {
+    font-size: 12px;
+  }
+  .cDetails .buttonSection button {
+    font-size: 13px;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .bigCard_wrapper .bigCard {
+    height: 300px;
+    width: 200px;
+  }
+  .cDetails {
+    min-height: 300px;
+    max-width: 80%;
+  }
+  .cDetails .movieName {
+    font-size: 22px;
+  }
+  .cDetails .movieGenere {
+    gap: 5px;
+  }
+  .cDetails .movieGenere span {
+    font-size: 10px;
+    padding: 2px 12px;
+  }
+  .cDetails .movieRelease,
+  .movieDuration,
+  .movieRating {
+    font-size: 12px;
+  }
+  .cDetails .buttonSection {
+    margin-top: 7px;
+  }
+  .cDetails .buttonSection button {
+    font-size: 11px;
+    padding: 2px 15px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .bigCard_wrapper {
+    gap: 20px;
+    padding: 10px 20px;
+    align-items: center;
+  }
+  .bigCard_wrapper .bigCard {
+    height: 285px;
+    width: 190px;
+  }
+  .cDetails {
+    min-height: 285px;
+    max-width: 61%;
+    gap: 4px;
+  }
+  .cDetails .movieName {
+    font-size: 21px;
+  }
+  .cDetails .movieGenere {
+    gap: 5px;
+  }
+  .cDetails .movieGenere span {
+    font-size: 11px;
+    padding: 1px 12px;
+  }
+  .cDetails .movieRelease,
+  .movieDuration,
+  .movieRating {
+    font-size: 12px;
+  }
+  .cDetails .movieStory {
+    font-size: 12px;
+  }
+  .cDetails .buttonSection {
+    margin-top: 7px;
+  }
+  .cDetails .buttonSection button {
+    font-size: 11px;
+    padding: 2px 15px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .movieplay_container {
+    min-height: 80vh;
+    max-height: 90vh;
+  }
+  .bigCard_wrapper {
+    gap: 20px;
+    padding: 10px 20px;
+    align-items: center;
+    flex-direction: column-reverse;
+  }
+  .bigCard_wrapper .bigCard {
+    height: 57vw;
+    width: 38vw;
+  }
+  .cDetails {
+    min-height: 285px;
+    max-width: 100%;
+    gap: 4px;
+  }
+  .cDetails .movieName {
+    font-size: 21px;
+  }
+  .cDetails .movieGenere {
+    gap: 5px;
+  }
+  .cDetails .movieGenere span {
+    font-size: 12px;
+    padding: 1px 12px;
+  }
+  .cDetails .movieRelease,
+  .movieDuration,
+  .movieRating {
+    font-size: 14px;
+  }
+  .cDetails .movieStory {
+    font-size: 12px;
+  }
+  .cDetails .buttonSection {
+    margin-top: 7px;
+  }
+  .cDetails .buttonSection button {
+    font-size: 13px;
+    padding: 3px 15px;
+  }
+}

@@ -1,0 +1,56 @@
+/* this is card container  */
+
+.working_area {
+  border-radius: var(--container_borderRadius);
+  box-shadow: var(--container_shadow_dark);
+  background: var(--container_color_dark);
+}
+.cards-title {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--heading_texColor_dark);
+  margin: 15px 0;
+}
+.card-container {
+  padding: 10px;
+  font-family: "Podkova", serif;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+/* this is Recommendation bar */
+
+.recommend-container {
+  padding: 0 10px;
+  overflow-y: hidden;
+}
+
+.recommend-container h3 {
+  color: white;
+  font-size: 16px;
+}
+.scroll-container {
+  padding: 10px 0;
+  display: flex;
+  gap: 15px;
+  overflow: scroll;
+}
+
+/* this is playing area */
+.playing_area {
+  position: absolute;
+  z-index: 99;
+  top: 0px;
+  left: 0;
+  width: 100vw;
+  padding: 10px;
+}
+
+.hide {
+  display: none;
+}
+.show {
+  display: flex;
+}

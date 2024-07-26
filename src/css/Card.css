@@ -1,0 +1,110 @@
+.movie_card {
+  border-radius: 13px;
+  width: 180px;
+  flex-shrink: 0;
+  height: 256px;
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+  transition: 0.2s ease-out;
+  overflow: hidden;
+  animation: render 0.8s ease 1;
+}
+.movie_card:hover {
+  transform: scale(104%);
+  transition: 0.4s ease;
+  box-shadow: var(--card_shadow_dark);
+}
+.movie_card img {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+}
+.movie_card:hover img {
+  filter: brightness(50%);
+}
+
+@keyframes render {
+  from {
+    opacity: 40%;
+    transform: scale(90%);
+  }
+  to {
+    opacity: 1;
+    transform: scale(100%);
+  }
+}
+
+.movie_card .movieInfo {
+  position: absolute;
+  transform: translateY(100%);
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 6px 5px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  background: linear-gradient(to top, rgb(0, 0, 0, 1), rgba(0, 0, 0, 0.425));
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5px;
+  color: white;
+  transition: 0.2s ease-out;
+}
+.movie_card:hover .movieInfo {
+  transform: translateY(0);
+  transition: 0.4s ease;
+  text-align: center;
+}
+.movieInfo .movie_name {
+  font-size: 16px;
+}
+.movieInfo .movie_year,
+.movie_type,
+.movie_language {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.678);
+}
+
+.movieInfo a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  width: 100%;
+}
+
+.downloadBtn {
+  padding: 2px 10px;
+  border-radius: 16px;
+  width: 70%;
+  font-size: 12px;
+  font-weight: 700;
+  border: 2px solid rgb(31, 155, 204);
+  background-color: transparent;
+  color: white;
+  outline: none;
+}
+.downloadBtn:hover {
+  background-color: #fa4107;
+  border: 2px solid #fa4107;
+  transition: 0.3s ease;
+}
+
+/* this is responsive Section */
+
+@media screen and (max-width: 800px) {
+  .movie_card {
+    width: 173px;
+    height: 247px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .movie_card {
+    width: 158px;
+    height: 232px;
+  }
+}
