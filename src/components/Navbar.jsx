@@ -8,7 +8,7 @@ function Navbar(props) {
   const navigate = useNavigate();
 
   const toggleNavbarVisibility = () => {
-    setIsNavbarVisible(!isNavbarVisible);
+    setIsNavbarVisible(true);
   };
 
   const hideNavbar = () => {
@@ -47,6 +47,24 @@ function Navbar(props) {
         </NavLink>
         <NavLink to="/latest_movies" onClick={hideNavbar}>
           <li>Latest Movies</li>
+        </NavLink>
+        <NavLink to="/horror" onClick={hideNavbar}>
+          <li>Horror</li>
+        </NavLink>
+        <NavLink to="/science_fiction" onClick={hideNavbar}>
+          <li>Science Fiction</li>
+        </NavLink>
+        <NavLink to="/thriller" onClick={hideNavbar}>
+          <li>Thriller</li>
+        </NavLink>
+        <NavLink to="/romance" onClick={hideNavbar}>
+          <li>Romance</li>
+        </NavLink>
+        <NavLink to="/crime" onClick={hideNavbar}>
+          <li>Crime</li>
+        </NavLink>
+        <NavLink to="/animation" onClick={hideNavbar}>
+          <li>Animation</li>
         </NavLink>
         <i className="fa-solid fa-x" id="crossIcon" onClick={hideNavbar}></i>
       </ul>

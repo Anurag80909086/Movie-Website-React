@@ -8,7 +8,7 @@ import { useNavigate, useParams, useLocation } from "react-router-dom";
 
 function Movie_play() {
   const navigate = useNavigate();
-  const [movie, setMovie] = useState();
+  const [movie, setMovie] = useState(null);
   const movieId = useParams();
   const location = useLocation();
 
@@ -48,7 +48,7 @@ function Movie_play() {
     } else if (movieType === "M") {
       getMovieData("movie");
     }
-  }, [movieId]);
+  }, [movieId, movieType]);
 
   return (
     <div className="movieplay_container flex">

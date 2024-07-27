@@ -53,3 +53,32 @@
 .show {
   display: flex;
 }
+
+/* this is toggle container */
+
+.toggleContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid white;
+  padding: 10px;
+}
+.toggleItems {
+  display: flex;
+  gap: 10px;
+}
+.toggleItems a {
+  color: white;
+  font-size: 14px;
+  background-color: grey;
+  border-radius: 8px;
+  padding: 2px 15px;
+  box-shadow: inset 0px 4px 14px 2px black;
+  text-decoration: none;
+}
+.toggleContainer .active {
+  color: white;
+  border-bottom: 4px solid rgb(40, 192, 10);
+  transform: scale(1.05);
+  box-shadow: 0px 1px 4px 0px #3fd7d9;
+}

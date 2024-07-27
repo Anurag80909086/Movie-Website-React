@@ -10,6 +10,7 @@ export const options = {
       "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkNzg0MmQ0ZTJmMGJjZTZhZmZhNTQ3NDQ3NDQ5NWEwMyIsIm5iZiI6MTcyMTc2MTIwNS4wODg2MTEsInN1YiI6IjY2ODNlZDU2OWM5OGIzNGY5NjliMjVlZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.xQMsRmKfUZqbbAZ9DcAj-BiPgWfbDUaQWyBrVCiIyS4",
   },
 };
+
 export const trendingAll = {
   title: "Trending",
   url: `${baseUrl}/trending/all/day?language=en-US&page=${page}&sort_by=popularity.desc`,
@@ -54,20 +55,6 @@ export const upcommingMovie = {
   url: `${baseUrl}/movie/upcoming?language=en-US&page=${page}`,
 };
 
-export const checkMovieType = (movie) => {
-  if (movie.type === "tv") {
-    return "Series";
-  } else if (movie.type === "movie") {
-    return "Movie";
-  } else if (movie.original_title) {
-    return "Movie";
-  } else if (movie.original_name) {
-    return "Series";
-  } else {
-    console.log("unknown");
-    return "Unknown";
-  }
-};
 export const genre = {
   Action: 28,
   Adventure: 12,
@@ -86,4 +73,25 @@ export const genre = {
   War: 10752,
   Western: 37,
   Kids: 10762,
+};
+// functions to use
+
+export const checkMovieType = (movie) => {
+  if (movie.type === "tv") {
+    return "Series";
+  } else if (movie.type === "movie") {
+    return "Movie";
+  } else if (movie.original_title) {
+    return "Movie";
+  } else if (movie.original_name) {
+    return "Series";
+  } else {
+    return "Unknown";
+  }
+};
+
+export const convertRuntime = (minutes) => {
+  const hours = Math.floor(minutes / 60);
+  const remainingMinutes = minutes % 60;
+  return `${hours}h ${remainingMinutes}m`;
 };

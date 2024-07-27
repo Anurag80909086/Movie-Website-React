@@ -1,16 +1,24 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { posterUrl } from "../api/apiConfig";
+
 const MovieDetail = ({ props }) => {
+  const [imageKey, setImageKey] = useState(Date.now());
+
+  useEffect(() => {
+    setImageKey(Date.now());
+  }, [props]);
+
   return (
     <>
       <img
+        key={imageKey}
         src={posterUrl + props.backdrop_path}
         className="poster_img"
         alt="movie_poster"
       />
       <div className="bigCard_wrapper flex">
         <div className="cDetails">
-          <div className="movieName">{props.original_name} </div>
+          <div className="movieName">{props.original_name}</div>
           <div className="movieGenere">
             {props.genres.map((genre) => (
               <span key={genre.id}>{genre.name}</span>
@@ -42,7 +50,11 @@ const MovieDetail = ({ props }) => {
           </div>
         </div>
         <div className="bigCard">
-          <img src={posterUrl + props.poster_path} alt="movie_image" />
+          <img
+            key={imageKey}
+            src={posterUrl + props.poster_path}
+            alt="movie_image"
+          />
         </div>
       </div>
     </>

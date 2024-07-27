@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Card from "../Card";
 import ReactLoading from "react-loading";
 import { options, posterUrl, checkMovieType } from "../../api/apiConfig";
-
 function CategoryRender(props) {
   const [movie, setMovie] = useState();
   const getMovieData = async () => {

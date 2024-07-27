@@ -58,6 +58,53 @@
   align-items: flex-start;
 }
 
+/* this is trailer section */
+#trailerContainer {
+  max-height: 85%;
+  max-width: 80%;
+  height: 55vw;
+  width: 85vw;
+  background-color: rgb(0, 0, 0, 0.95);
+  border-radius: 18px;
+  box-shadow: var(--card_shadow_dark);
+  z-index: 5;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+}
+
+.hideContainer {
+  display: none;
+}
+.showContainer {
+  display: flex;
+  animation: showTrailer 0.3s ease 1;
+}
+@keyframes showTrailer {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(50%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(100%);
+  }
+}
+#crossIcon {
+  font-size: 17px;
+  position: absolute;
+  right: 15px;
+  top: 12px;
+  z-index: 6;
+  cursor: pointer;
+}
+#crossIcon:active {
+  transform: scale(0.95);
+}
 /* this is bigCard styling */
 .bigCard_wrapper .bigCard {
   height: 340px;
@@ -68,6 +115,17 @@
   cursor: pointer;
   flex-shrink: 0;
   box-shadow: var(--card_shadow_dark);
+  animation: bigCardFLoat 1s ease 1;
+}
+@keyframes bigCardFLoat {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0px);
+  }
 }
 .bigCard_wrapper .bigCard:hover {
   transform: scale(103%);
@@ -92,6 +150,17 @@
   background-color: rgba(0, 0, 0, 0.712);
   box-shadow: var(--card_shadow_dark);
   overflow: hidden;
+  animation: detailRender 0.8s ease 1;
+}
+@keyframes detailRender {
+  from {
+    opacity: 0;
+    transform: scale(50%);
+  }
+  to {
+    opacity: 1;
+    transform: scale(100%);
+  }
 }
 .cDetails .movieName {
   font-size: 35px;
