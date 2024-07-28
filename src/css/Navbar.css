@@ -23,6 +23,7 @@
   margin: 0;
   padding: 0;
   user-select: none;
+  max-width: 70%;
 }
 #navbar a {
   color: var(--heading_texColor_dark);
@@ -148,6 +149,7 @@
   }
   #navbar {
     justify-content: space-evenly;
+    max-width: 100%;
   }
   #navbar li {
     font-size: 16px;

@@ -95,3 +95,39 @@ export const convertRuntime = (minutes) => {
   const remainingMinutes = minutes % 60;
   return `${hours}h ${remainingMinutes}m`;
 };
+
+export const trailerKey = (props) => {
+  const trailer = props.results.find(
+    (video) => video.type === "Trailer" && video.site === "YouTube"
+  );
+  return trailer;
+};
+
+export const extractAllYoutubeVideos = (props) => {
+  const videoKeys = props.results
+    .filter((video) => video.site === "YouTube")
+    .map((video) => video.key);
+  return videoKeys;
+};
+export const getTopActingLeads = (castData) => {
+  const filteredCast = castData.cast
+    .filter(
+      (member) =>
+        member.known_for_department === "Acting" &&
+        member.order >= 0 &&
+        member.order <= 20
+    )
+    .sort((a, b) => a.order - b.order);
+
+  return filteredCast;
+};
+
+export const getFilteredImages = (imagesData) => {
+  const filteredImages = imagesData.backdrops
+    .filter((image) => image.vote_count >= 0 && image.vote_count <= 20)
+    .sort((a, b) => a.vote_count - b.vote_count)
+    .slice(0, 20)
+    .map((image) => image.file_path);
+
+  return filteredImages;
+};
