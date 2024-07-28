@@ -58,6 +58,7 @@ const MovieDetail = ({ props }) => {
   };
   const getAllPhotos = async () => {
     try {
+      setImages("");
       const url = `${baseUrl}/movie/${props.id}/images`;
       const response = await fetch(url, options);
       const allImages = await response.json();
