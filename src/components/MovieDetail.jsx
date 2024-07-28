@@ -46,7 +46,8 @@ const MovieDetail = ({ props }) => {
       const url = `${baseUrl}/movie/${props.id}/videos?language=en-US`;
       const response = await fetch(url, options);
       const allVideos = await response.json();
-      setVideos(extractAllYoutubeVideos(allVideos));
+      const filterVideos = extractAllYoutubeVideos(allVideos);
+      setVideos(filterVideos);
       console.log("All Movie Videos", allVideos.results);
       setTrailer(trailerKey(allVideos));
     } catch (error) {
@@ -289,6 +290,29 @@ const MovieDetail = ({ props }) => {
             </div>
             <div className="videosContainer">
               <span className="detailsTitle">Videos</span>
+              <div className="videosWrapper">
+                {videos ? (
+                  videos.map((elem) => {
+                    return (
+                      <iframe
+                        src={`https://www.youtube.com/embed/${elem.key}?rel=0&modestbranding=1`}
+                        title={elem.name}
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        referrerPolicy="strict-origin-when-cross-origin"
+                        allowFullScreen
+                      ></iframe>
+                    );
+                  })
+                ) : (
+                  <ReactLoading
+                    type={"spinningBubbles"}
+                    color={"#9b59b6"}
+                    height={80}
+                    width={80}
+                  />
+                )}
+              </div>
             </div>
           </>
         ) : (

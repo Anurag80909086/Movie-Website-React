@@ -104,10 +104,16 @@ export const trailerKey = (props) => {
 };
 
 export const extractAllYoutubeVideos = (props) => {
-  const videoKeys = props.results
-    .filter((video) => video.site === "YouTube")
-    .map((video) => video.key);
-  return videoKeys;
+  return props.results
+    .filter(video => video.site === "YouTube" && video.official)
+    .slice(0, 6)
+    .map(video => ({
+      name: video.name,
+      key: video.key,
+      site: video.site,
+      type: video.type,
+      published_at: video.published_at
+    }));
 };
 export const getTopActingLeads = (castData) => {
   const filteredCast = castData.cast

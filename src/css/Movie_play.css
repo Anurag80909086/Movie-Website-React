@@ -69,7 +69,7 @@
   background-color: rgb(0, 0, 0, 0.95);
   border-radius: 18px;
   box-shadow: var(--card_shadow_dark);
-  overflow: scroll;
+  overflow-x: scroll;
   flex-direction: column;
   padding: 10px;
   gap: 10px;
@@ -150,6 +150,7 @@
 }
 .movieGenere {
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
 }
 .movieGenere span {
@@ -201,12 +202,21 @@
 .imageWrapper img {
   border: 1px solid white;
   border-radius: 15px;
-  height: 410px;
-  width: 487px;
+  height: 26vw;
+  width: 54vw;
 }
-.videosContainer {
-  border: 1px solid green;
-  height: 300px;
+.videosWrapper {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.videosWrapper iframe {
+  height: 26.8vw;
+  width: 47.3vw;
+  border-radius: 15px;
+  overflow: hidden;
+  border: 2px solid red;
 }
 /* this is trailer section */
 #trailerContainer {
@@ -387,6 +397,35 @@
   .cDetails .buttonSection button {
     font-size: 13px;
   }
+  .deepDetailsContainer .photoContainer img {
+    height: 435px;
+    width: 295px;
+  }
+
+  .dataTitle {
+    font-size: 15px;
+  }
+  .dataResult {
+    font-size: 14px;
+  }
+  .movieGenere span {
+    font-size: 13px;
+  }
+  .detailsTitle {
+    font-size: 25px;
+  }
+  .castCard {
+    width: 125px;
+    font-size: 14px;
+  }
+  .imageWrapper img {
+    height: 26vw;
+    width: 52vw;
+  }
+  .videosWrapper iframe {
+    height: 26.1vw;
+    width: 46vw;
+  }
 }
 
 @media screen and (max-width: 750px) {
@@ -419,6 +458,52 @@
   .cDetails .buttonSection button {
     font-size: 11px;
     padding: 2px 15px;
+  }
+  #moreDetailsContainer h3 {
+    font-size: 32px;
+  }
+  .deepDetailsContainer .photoContainer {
+    padding: 6px;
+  }
+  .deepDetailsContainer .photoContainer img {
+    height: 400px;
+    width: 260px;
+  }
+  .deepDetailsContainer .detailsContainer {
+    gap: 5px;
+    padding-top: 3px;
+  }
+  .dataTitle {
+    font-size: 14px;
+  }
+  .dataResult {
+    font-size: 13px;
+    padding: 5px 0;
+    padding-left: 10px;
+  }
+  .movieGenere {
+    gap: 5px;
+  }
+  .movieGenere span {
+    font-size: 13px;
+    padding: 1px 11px;
+  }
+  .detailsTitle {
+    font-size: 23px;
+  }
+  .castCard {
+    width: 105px;
+  }
+  .castCard span {
+    font-size: 12px;
+  }
+  .imageWrapper img {
+    height: 26vw;
+    width: 52vw;
+  }
+  .videosWrapper iframe {
+    height: 26.1vw;
+    width: 46vw;
   }
 }
 
@@ -461,6 +546,43 @@
   .cDetails .buttonSection button {
     font-size: 11px;
     padding: 2px 15px;
+  }
+  #moreDetailsContainer h3 {
+    font-size: 28px;
+  }
+  .deepDetailsContainer .photoContainer {
+    padding: 5px;
+  }
+  .deepDetailsContainer .photoContainer img {
+    height: 60vw;
+    width: 38vw;
+  }
+  .deepDetailsContainer .detailsContainer {
+    gap: 5px;
+    padding-top: 3px;
+  }
+  .dataTitle {
+    font-size: 14px;
+  }
+  .dataResult {
+    font-size: 13px;
+    padding: 5px 0;
+    padding-left: 10px;
+  }
+  .movieGenere {
+    gap: 3px;
+  }
+  .movieGenere span {
+    font-size: 11px;
+    padding: 2px 8px;
+  }
+  .imageWrapper img {
+    height: 30vw;
+    width: 50vw;
+  }
+  .videosWrapper iframe {
+    height: 26.7vw;
+    width: 45vw;
   }
 }
 
@@ -514,5 +636,45 @@
     max-width: 95%;
     height: 60vw;
     width: 90vw;
+  }
+  .deepDetailsContainer {
+    align-items: center;
+    flex-direction: column;
+  }
+  #moreDetailsContainer h3 {
+    font-size: 28px;
+  }
+  .deepDetailsContainer .photoContainer {
+    padding: 5px;
+  }
+  .deepDetailsContainer .photoContainer img {
+    height: 80vw;
+    width: 53vw;
+  }
+  .dataTitle {
+    font-size: 16px;
+  }
+  .dataResult {
+    font-size: 14px;
+    padding: 5px 0;
+    padding-left: 10px;
+  }
+  .movieGenere {
+    gap: 5px;
+  }
+  .movieGenere span {
+    font-size: 13px;
+    padding: 2px 10px;
+  }
+  .imageWrapper img {
+    height: 45vw;
+    width: 70vw;
+  }
+  .videosWrapper {
+    justify-content: center;
+  }
+  .videosWrapper iframe {
+    height: 50.6vw;
+    width: 88vw;
   }
 }
