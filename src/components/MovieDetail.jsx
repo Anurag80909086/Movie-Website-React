@@ -31,6 +31,7 @@ const MovieDetail = ({ props }) => {
 
   const showMoreDetails = () => {
     setShowDetails(true);
+    hideTrailerPlay();
   };
   const hideTrailerPlay = () => {
     setShowPlay(false);
@@ -39,6 +40,7 @@ const MovieDetail = ({ props }) => {
 
   const showTrailerPlay = () => {
     setShowPlay(true);
+    hideMoreDetails();
   };
 
   const getAllVideos = async () => {
