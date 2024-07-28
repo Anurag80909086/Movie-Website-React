@@ -192,7 +192,7 @@ const MovieDetail = ({ props }) => {
           id="crossIcon"
           onClick={hideMoreDetails}
         ></i>
-        {props ? (
+        {props && images && videos && casts ? (
           <>
             <div className="deepDetailsContainer">
               <div className="photoContainer">
