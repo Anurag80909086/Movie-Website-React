@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Card from "../Card";
+import Card from "../Card/Card";
 import ReactLoading from "react-loading";
 import { options, posterUrl, checkMovieType } from "../../api/apiConfig";
 function CategoryRender(props) {

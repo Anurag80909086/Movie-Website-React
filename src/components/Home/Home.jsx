@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import Header from "./components/Header";
+import Header from "../Header/Header";
 import { Routes, Route } from "react-router-dom";
 
-import Navbar from "./components/Navbar";
-import PlayingArea from "./components/Playing_area";
-import Error from "./components/nav_components/Error";
+import Navbar from "../Navbar/Navbar";
+import PlayingArea from "../Playing_area/Playing_area";
+import Error from "../nav_components/Error";
 import {
   Movies,
   TvShows,
@@ -17,7 +17,7 @@ import {
   Romance,
   Crime,
   Animation,
-} from "./components/nav_components/NavComponents";
+} from "../nav_components/NavComponents";
 const Home = () => {
   const [searchData, setSearchData] = useState("");
   function checkSomething(search) {

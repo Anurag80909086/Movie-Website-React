@@ -2,7 +2,6 @@
   border-radius: var(--container_borderRadius);
   box-shadow: var(--container_shadow_dark);
   background: var(--container_color_darkest);
-  /* overflow: hidden; */
   position: relative;
   height: 85vh;
   width: 100%;

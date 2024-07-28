@@ -1,7 +1,13 @@
 import React from "react";
 import CategoryRender from "./CategoryRender";
-import { Movie, Series, trendingAll, latestMovies } from "../../api/apiConfig";
-import { baseUrl, genre } from "../../api/apiConfig";
+import {
+  Movie,
+  Series,
+  trendingAll,
+  latestMovies,
+  baseUrl,
+  genre,
+} from "../../api/apiConfig";
 export const Movies = () => {
   return <CategoryRender title={Movie.title} url={Movie.url} />;
 };

@@ -11,6 +11,17 @@ export const options = {
   },
 };
 
+export const fetchApi = async (prop) => {
+  const url = `${baseUrl}${prop}`;
+  try {
+    const response = await fetch(url, options);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    return "Error Fetching Data!!";
+  }
+};
+
 export const trendingAll = {
   title: "Trending",
   url: `${baseUrl}/trending/all/day?language=en-US&page=${page}&sort_by=popularity.desc`,
@@ -105,14 +116,14 @@ export const trailerKey = (props) => {
 
 export const extractAllYoutubeVideos = (props) => {
   return props.results
-    .filter(video => video.site === "YouTube" && video.official)
+    .filter((video) => video.site === "YouTube" && video.official)
     .slice(0, 6)
-    .map(video => ({
+    .map((video) => ({
       name: video.name,
       key: video.key,
       site: video.site,
       type: video.type,
-      published_at: video.published_at
+      published_at: video.published_at,
     }));
 };
 export const getTopActingLeads = (castData) => {

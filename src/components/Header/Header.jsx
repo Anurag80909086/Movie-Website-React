@@ -1,8 +1,9 @@
-import "../css/Header.css";
+import "./Header.css";
+import Logo from "./Logo.png";
 function Header() {
   return (
     <div className="header">
-      <img src="/images/Logo.png" alt="Logo" id="logo" />
+      <img src={Logo} alt="Logo" id="logo" />
       <h3 className="logo-name">Movies Hub</h3>
     </div>
   );

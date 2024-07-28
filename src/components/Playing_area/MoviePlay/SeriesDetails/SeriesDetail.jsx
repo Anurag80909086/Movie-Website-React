@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { posterUrl } from "../api/apiConfig";
+import { posterUrl } from "../../../../api/apiConfig";
 
 const MovieDetail = ({ props }) => {
   const [imageKey, setImageKey] = useState(Date.now());

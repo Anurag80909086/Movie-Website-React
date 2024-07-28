@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { NavLink, Link, useNavigate } from "react-router-dom";
-import "../css/Navbar.css";
+import "./Navbar.css";
 
 function Navbar(props) {
-  const [isNavbarVisible, setIsNavbarVisible] = useState(false); // New state to track navbar visibility
+  const [isNavbarVisible, setIsNavbarVisible] = useState(false);
   const [input, setInput] = useState("");
   const navigate = useNavigate();
 

@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
 import {
+  fetchApi,
   posterUrl,
   convertRuntime,
-  baseUrl,
-  options,
   trailerKey,
   extractAllYoutubeVideos,
   getTopActingLeads,
   getFilteredImages,
-} from "../api/apiConfig";
+} from "../../../../api/apiConfig";
 import ReactLoading from "react-loading";
 
 const MovieDetail = ({ props }) => {
@@ -43,44 +42,30 @@ const MovieDetail = ({ props }) => {
     hideMoreDetails();
   };
 
-  const getAllVideos = async () => {
-    try {
-      const url = `${baseUrl}/movie/${props.id}/videos?language=en-US`;
-      const response = await fetch(url, options);
-      const allVideos = await response.json();
-      const filterVideos = extractAllYoutubeVideos(allVideos);
-      setVideos(filterVideos);
-      console.log("All Movie Videos", allVideos.results);
-      setTrailer(trailerKey(allVideos));
-    } catch (error) {
-      console.log("Error fetching trailer video:", error);
-    }
-  };
-  const getAllPhotos = async () => {
-    try {
-      setImages("");
-      const url = `${baseUrl}/movie/${props.id}/images`;
-      const response = await fetch(url, options);
-      const allImages = await response.json();
-      const filteredImages = getFilteredImages(allImages);
-      setImages(filteredImages);
-      console.log("All movie Images", allImages);
-    } catch (error) {
-      console.log("Error fetching Images", error);
-    }
+  const getAllVideos = () => {
+    const url = `/movie/${props.id}/videos?language=en-US`;
+    fetchApi(url).then((res) => {
+      console.log("All Movie Videos", res.results);
+      setTrailer(trailerKey(res));
+      setVideos(extractAllYoutubeVideos(res));
+    });
   };
 
-  const getAllCasts = async () => {
-    try {
-      const url = `${baseUrl}/movie/${props.id}/credits?language=en-US`;
-      const response = await fetch(url, options);
-      const allCasts = await response.json();
-      const topActing = getTopActingLeads(allCasts);
-      setCasts(topActing);
-      console.log("All Casts", topActing);
-    } catch (error) {
-      console.log("Error Getting Casts", error);
-    }
+  const getAllPhotos = () => {
+    setImages("");
+    const url = `/movie/${props.id}/images`;
+    fetchApi(url).then((res) => {
+      console.log("All movie Images", res);
+      setImages(getFilteredImages(res));
+    });
+  };
+
+  const getAllCasts = () => {
+    const url = `/movie/${props.id}/credits?language=en-US`;
+    fetchApi(url).then((res) => {
+      console.log("All movie Images", res);
+      setCasts(getTopActingLeads(res));
+    });
   };
 
   useEffect(() => {

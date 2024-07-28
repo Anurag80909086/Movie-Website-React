@@ -1,12 +1,12 @@
 import React from "react";
-import RecommendSection from "./Recommend_section";
+import RecommendSection from "./RecommendSection/Recommend_section";
 import { useParams } from "react-router-dom";
 import {
   popularMovie,
   popularSeries,
   topRatedMovie,
   topRatedSeries,
-} from "../api/apiConfig";
+} from "../../../api/apiConfig";
 function Recomendation_area() {
   const page = 1;
   const baseUrl = "https://api.themoviedb.org/3";

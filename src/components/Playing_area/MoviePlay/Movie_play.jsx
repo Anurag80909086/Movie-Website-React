@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import "../css/Movie_play.css";
+import "./Movie_play.css";
 import ReactLoading from "react-loading";
-import MovieDetail from "./MovieDetail";
-import SeriesDetail from "./SeriesDetail";
-import { options, baseUrl } from "../api/apiConfig";
+import MovieDetail from "./MovieDetails/MovieDetail";
+import SeriesDetail from "./SeriesDetails/SeriesDetail";
+import { options, baseUrl } from "../../../api/apiConfig";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 
 function Movie_play() {
