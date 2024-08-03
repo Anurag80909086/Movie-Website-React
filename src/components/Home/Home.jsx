@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Header from "../Header/Header";
 import { Routes, Route } from "react-router-dom";
-
 import Navbar from "../Navbar/Navbar";
 import PlayingArea from "../Playing_area/Playing_area";
 import Error from "../nav_components/Error";
@@ -33,12 +32,12 @@ const Home = () => {
         <Route path="/movie" element={<Movies />} />
         <Route path="/series" element={<TvShows />} />
         <Route path="/latest_movies" element={<LatestMovies />} />
-        <Route path="/horror" element={<Horror />} />
-        <Route path="/science_fiction" element={<ScienceFiction />} />
-        <Route path="/thriller" element={<Thriller />} />
-        <Route path="/romance" element={<Romance />} />
-        <Route path="/crime" element={<Crime />} />
-        <Route path="/animation" element={<Animation />} />
+        <Route path="/horror/:type" element={<Horror />} />
+        <Route path="/science_fiction/:type" element={<ScienceFiction />} />
+        <Route path="/thriller/:type" element={<Thriller />} />
+        <Route path="/romance/:type" element={<Romance />} />
+        <Route path="/crime/:type" element={<Crime />} />
+        <Route path="/animation/:type" element={<Animation />} />
         <Route path="/search" element={<SearchResult search={searchData} />} />
         <Route path="/:movie" element={<PlayingArea />} />
         <Route path="*" element={<Error />} />

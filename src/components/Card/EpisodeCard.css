@@ -1,0 +1,22 @@
+.episodeCard {
+  border: 2px solid rgb(128, 127, 127);
+  border-radius: 15px;
+  padding: 5px;
+  overflow: hidden;
+  width: 20vw;
+  display: flex;
+  flex-direction: column;
+}
+
+.episodeCard img {
+  border-radius: 13px;
+  width: 100%;
+}
+
+.episodeCard span {
+  text-align: center;
+  color: white;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-size: 12px;
+}

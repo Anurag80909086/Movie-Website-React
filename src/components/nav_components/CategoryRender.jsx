@@ -1,15 +1,20 @@
 import React, { useEffect, useState } from "react";
 import Card from "../Card/Card";
 import ReactLoading from "react-loading";
-import { options, posterUrl, checkMovieType } from "../../api/apiConfig";
+import {
+  options,
+  posterUrl,
+  checkMovieType,
+  getLanguageName,
+} from "../../api/apiConfig";
 function CategoryRender(props) {
-  const [movie, setMovie] = useState();
+  const [movie, setMovie] = useState([]);
   const getMovieData = async () => {
     const url = props.url;
     try {
       const response = await fetch(url, options);
       const data = await response.json();
-      console.log(props.title, data.results);
+      // console.log(props.title, data.results);
       setMovie(data.results);
     } catch {
       console.log("error");
@@ -39,11 +44,7 @@ function CategoryRender(props) {
                     ? movie.first_air_date
                     : movie.release_date
                 }
-                language={
-                  movie.original_language === "en"
-                    ? "English"
-                    : movie.original_language
-                }
+                language={getLanguageName(movie.original_language)}
                 imgSrc={`${posterUrl}${movie.poster_path}`}
                 link={`/${movie.id}`}
               />

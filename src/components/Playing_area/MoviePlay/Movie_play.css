@@ -38,7 +38,7 @@
   width: 30px;
   font-size: 24px;
   cursor: pointer;
-  z-index: 2;
+  z-index: 1;
   transition: 0.3s ease;
 }
 .movieplay_container .backBtn:active {

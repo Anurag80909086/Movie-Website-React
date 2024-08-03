@@ -1,0 +1,25 @@
+.SeasonCard {
+  border: 2px solid white;
+  border-radius: 10px;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  height: 274px;
+  width: 160px;
+  overflow: hidden;
+  transition: 0.3s ease;
+  cursor: pointer;
+}
+.SeasonCard:hover {
+  transform: scale(1.01);
+  transition: 0.4s ease;
+}
+.SeasonCard img {
+  width: 100%;
+  border-radius: 10px;
+}
+.SeasonCard .seasonNo {
+  font-size: 15px;
+  color: white;
+  text-align: center;
+}

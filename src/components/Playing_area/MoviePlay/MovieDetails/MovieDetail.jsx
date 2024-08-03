@@ -45,7 +45,7 @@ const MovieDetail = ({ props }) => {
   const getAllVideos = () => {
     const url = `/movie/${props.id}/videos?language=en-US`;
     fetchApi(url).then((res) => {
-      console.log("All Movie Videos", res.results);
+      // console.log("All Movie Videos", res.results);
       setTrailer(trailerKey(res));
       setVideos(extractAllYoutubeVideos(res));
     });
@@ -55,7 +55,7 @@ const MovieDetail = ({ props }) => {
     setImages("");
     const url = `/movie/${props.id}/images`;
     fetchApi(url).then((res) => {
-      console.log("All movie Images", res);
+      // console.log("All movie Images", res);
       setImages(getFilteredImages(res));
     });
   };
@@ -63,7 +63,7 @@ const MovieDetail = ({ props }) => {
   const getAllCasts = () => {
     const url = `/movie/${props.id}/credits?language=en-US`;
     fetchApi(url).then((res) => {
-      console.log("All movie Images", res);
+      // console.log("All movie Images", res);
       setCasts(getTopActingLeads(res));
     });
   };
@@ -227,7 +227,6 @@ const MovieDetail = ({ props }) => {
                     <tr>
                       <td className="dataTitle">IMDB ID</td>
                       <td>:</td>
-
                       <td className="dataResult">{props.imdb_id}</td>
                     </tr>
                     <tr>
@@ -271,7 +270,7 @@ const MovieDetail = ({ props }) => {
               <div className="imageWrapper">
                 {casts
                   ? images.map((elem) => {
-                      return <img src={posterUrl + elem} alt="movie_images" />;
+                      return <img src={posterUrl + elem} alt="movie_images" key={elem.id}/>;
                     })
                   : "Loading ..."}
               </div>
@@ -283,6 +282,7 @@ const MovieDetail = ({ props }) => {
                   videos.map((elem) => {
                     return (
                       <iframe
+                      key={elem.id}
                         src={`https://www.youtube.com/embed/${elem.key}?rel=0&modestbranding=1`}
                         title={elem.name}
                         frameBorder="0"

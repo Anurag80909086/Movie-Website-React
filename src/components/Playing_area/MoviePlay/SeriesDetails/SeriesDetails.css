@@ -1,0 +1,132 @@
+.season_info {
+  background-color: rgb(0, 0, 0, 0.9);
+  border-radius: 18px;
+  box-shadow: var(--card_shadow_dark);
+  border: 1px solid rgb(192, 192, 192);
+  height: 96%;
+  width: 98%;
+  position: fixed;
+  padding: 10px 30px;
+  z-index: 10;
+  top: 50%;
+  display: none;
+  transform: translateY(-50%);
+}
+.season_info h5 {
+  text-align: center;
+}
+
+#season_show {
+  display: flex;
+  flex-direction: column;
+  animation: showSeason 0.5s ease 1;
+}
+#season_hide {
+  display: none;
+}
+
+@keyframes showSeason {
+  from {
+    opacity: 0;
+    transform: translateY(-50%) scale(50%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(-50%) scale(100%);
+  }
+}
+
+.seasons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  overflow-y: scroll;
+  height: 95%;
+  /* border: 1px solid green; */
+}
+.closeBtn {
+  z-index: 10;
+  position: absolute;
+  font-weight: 700;
+  top: 12px;
+  right: 18px;
+  color: white;
+  font-size: 23px;
+  cursor: pointer;
+}
+.closeBtn:active {
+  transform: scale(0.9);
+}
+.wrapperSeason {
+  /* border: 1px solid red; */
+  display: flex;
+  flex-wrap: wrap;
+  flex-shrink: 1;
+  justify-content: center;
+  position: sticky;
+  top: 0;
+  left: 0;
+  height: 100%;
+  gap: 10px;
+  overflow-y: scroll;
+}
+
+/* from here details Wrapper starts */
+
+.detailsWrapper {
+  /* border: 2px solid rgb(255, 2, 200); */
+  height: max-content;
+  width: 72%;
+  gap: 10px;
+  display: none;
+  flex-direction: column;
+  display: flex;
+}
+
+#hideWrapper {
+  display: none;
+}
+#showWrapper {
+  display: flex;
+}
+/* overviewSection */
+.overviewSection {
+  display: flex;
+  gap: 10px;
+}
+.overviewSection .posterContainer img {
+  height: 353px;
+  width: 236px;
+  border-radius: 15px;
+  box-shadow: var(--card_shadow_dark);
+}
+
+.overviewSection .detailsContainer h2 {
+  font-size: 35px;
+  font-family: "Quantico", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* episodes Section */
+.episodesSection .episodeWrapper {
+  display: flex;
+  justify-content: left;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* trailer Section */
+
+.trailerContainer .videosWrapper {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+/* videos section */
+.videosContainer .videosWrapper {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}

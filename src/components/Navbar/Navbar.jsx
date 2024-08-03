@@ -48,22 +48,22 @@ function Navbar(props) {
         <NavLink to="/latest_movies" onClick={hideNavbar}>
           <li>Latest Movies</li>
         </NavLink>
-        <NavLink to="/horror" onClick={hideNavbar}>
+        <NavLink to="/horror/movies" onClick={hideNavbar}>
           <li>Horror</li>
         </NavLink>
-        <NavLink to="/science_fiction" onClick={hideNavbar}>
+        <NavLink to="/science_fiction/movies" onClick={hideNavbar}>
           <li>Science Fiction</li>
         </NavLink>
-        <NavLink to="/thriller" onClick={hideNavbar}>
+        <NavLink to="/thriller/movies" onClick={hideNavbar}>
           <li>Thriller</li>
         </NavLink>
-        <NavLink to="/romance" onClick={hideNavbar}>
+        <NavLink to="/romance/movies" onClick={hideNavbar}>
           <li>Romance</li>
         </NavLink>
-        <NavLink to="/crime" onClick={hideNavbar}>
+        <NavLink to="/crime/movies" onClick={hideNavbar}>
           <li>Crime</li>
         </NavLink>
-        <NavLink to="/animation" onClick={hideNavbar}>
+        <NavLink to="/animation/movies" onClick={hideNavbar}>
           <li>Animation</li>
         </NavLink>
         <i className="fa-solid fa-x" id="crossIcon" onClick={hideNavbar}></i>

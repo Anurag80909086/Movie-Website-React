@@ -35,7 +35,7 @@ function Movie_play() {
       const url = `${baseUrl}/${type}/${movieID}?language=en-US`;
       const response = await fetch(url, options);
       const detailData = await response.json();
-      console.log("More Details", detailData);
+      // console.log("More Details", detailData);
       setMovie(detailData);
     } catch {
       console.log("error");

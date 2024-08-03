@@ -10,7 +10,7 @@ function Recommend_section(props) {
     try {
       const response = await fetch(url, options);
       const data = await response.json();
-      console.log(props.title, data.results);
+      // console.log(props.title, data.results);
       setMovie(data.results);
     } catch {
       console.log("error");
