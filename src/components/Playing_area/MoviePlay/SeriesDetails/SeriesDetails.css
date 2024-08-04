@@ -74,21 +74,13 @@
 /* from here details Wrapper starts */
 
 .detailsWrapper {
-  /* border: 2px solid rgb(255, 2, 200); */
   height: max-content;
   width: 72%;
   gap: 10px;
-  display: none;
   flex-direction: column;
   display: flex;
 }
 
-#hideWrapper {
-  display: none;
-}
-#showWrapper {
-  display: flex;
-}
 /* overviewSection */
 .overviewSection {
   display: flex;

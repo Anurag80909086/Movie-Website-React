@@ -3,50 +3,61 @@ import { RxCross2 } from "react-icons/rx";
 import { posterUrl } from "../../../../api/apiConfig";
 import SeasonCard from "../../../Card/SeasonCard";
 import DetailsWrapper from "./DetailsWrapper";
+
 const SeasonInfo = (prop) => {
   const [showWrapper, setShowWrapper] = useState(false);
-  const [seasons, setSeasons] = useState();
+  const [seasons, setSeasons] = useState([]);
+  const [seasonNum, setSeasonNum] = useState(null);
+
   const updateSeason = (seasons) => {
-    const filterSeason = seasons.filter((season) => season.name !== "Specials");
-    setSeasons(filterSeason);
+    const filteredSeasons = seasons.filter(
+      (season) => season.name !== "Specials"
+    );
+    setSeasons(filteredSeasons);
   };
-  function openSeasonDetails() {
+
+  const openSeasonDetails = (sNum) => {
+    setSeasonNum(sNum);
     setShowWrapper(true);
-  }
+  };
+
   useEffect(() => {
     updateSeason(prop.seasonData);
-  }, []);
+  }, [prop.seasonData]);
+
   return (
     <div className="season_info" id={prop.class}>
       <RxCross2 className="closeBtn" onClick={prop.closeShow} />
       <h5>
         Seasons
         <span style={{ color: "orange", marginLeft: "10px" }}>
-          {prop.seasonData.length}
+          {seasons.length}
         </span>
       </h5>
       <div className="seasons">
         <div className="wrapperSeason">
-          {seasons
-            ? seasons.map((elem) => {
-                return (
-                  <SeasonCard
-                    url={posterUrl + elem.poster_path}
-                    name={elem.name}
-                    release_date={elem.air_date}
-                    key={elem.id}
-                    showDetails={openSeasonDetails}
-                  />
-                );
-              })
+          {seasons.length > 0
+            ? seasons.map((elem) => (
+                <SeasonCard
+                  url={posterUrl + elem.poster_path}
+                  name={elem.name}
+                  release_date={elem.air_date}
+                  sNo={elem.season_number}
+                  key={elem.id}
+                  showDetails={() => openSeasonDetails(elem.season_number)}
+                />
+              ))
             : "Loading..."}
         </div>
 
-        <DetailsWrapper
-          wrapperDisplay={showWrapper ? "showWrapper" : "hideWrapper"}
-          seriesId={prop.seriesId}
-          seriesName={prop.seriesName}
-        />
+        {showWrapper && seasonNum !== null && (
+          <DetailsWrapper
+            seasonNo={seasonNum}
+            seriesId={prop.seriesId}
+            seriesName={prop.seriesName}
+            key={seasonNum} // Ensure re-render by changing key
+          />
+        )}
       </div>
     </div>
   );

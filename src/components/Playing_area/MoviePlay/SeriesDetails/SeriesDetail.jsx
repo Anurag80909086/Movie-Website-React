@@ -2,19 +2,18 @@ import React, { useState, useEffect } from "react";
 import { posterUrl } from "../../../../api/apiConfig";
 import "./SeriesDetails.css";
 import SeasonInfo from "./SeasonInfo";
+
 const MovieDetail = ({ props }) => {
-  console.log('series page rendered !!')
   const [imageKey, setImageKey] = useState(Date.now());
   const [showSeason, setShowSeason] = useState(false);
-  function updateShow() {
-    setShowSeason(!showSeason);
-  }
-  function closeSeason() {
-    setShowSeason(false);
-  }
+
+  const updateShow = () => setShowSeason((prev) => !prev);
+  const closeSeason = () => setShowSeason(false);
+
   useEffect(() => {
     setImageKey(Date.now());
-  }, [props]);
+  }, [props.backdrop_path, props.poster_path]);
+
   return (
     <>
       <img
@@ -67,15 +66,15 @@ const MovieDetail = ({ props }) => {
             alt="movie_image"
           />
         </div>
-        <SeasonInfo
-          class={showSeason ? "season_show" : "season_hide"}
-          seasonData={props.seasons}
-          seriesId={props.id}
-          seriesName={props.name}
-          closeShow={() => {
-            closeSeason();
-          }}
-        />
+        {showSeason && (
+          <SeasonInfo
+            class={showSeason ? "season_show" : "season_hide"}
+            seasonData={props.seasons}
+            seriesId={props.id}
+            seriesName={props.name}
+            closeShow={closeSeason}
+          />
+        )}
       </div>
     </>
   );

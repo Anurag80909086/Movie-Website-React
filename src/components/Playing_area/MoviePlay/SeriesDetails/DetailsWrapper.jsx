@@ -1,51 +1,59 @@
 import React, { useState, useEffect } from "react";
+import ReactLoading from "react-loading";
+import EpisodeCard from "../../../Card/EpisodeCard";
 import {
   posterUrl,
   fetchApi,
   getSeasonVideos,
   getSeasonCast,
 } from "../../../../api/apiConfig";
-import ReactLoading from "react-loading";
-import EpisodeCard from "../../../Card/EpisodeCard";
 
 const DetailsWrapper = (props) => {
-  const [seasonData, setSeasonData] = useState();
-  const [episodes, setEpisodes] = useState();
-  const [trailer, setTrailer] = useState();
-  const [videos, setVideos] = useState();
-  const [casts, setCasts] = useState();
+  const [seasonData, setSeasonData] = useState(null);
+  const [episodes, setEpisodes] = useState([]);
+  const [trailer, setTrailer] = useState([]);
+  const [videos, setVideos] = useState([]);
+  const [casts, setCasts] = useState([]);
+
   const getSeasonData = () => {
-    const url = `/tv/${props.seriesId}/season/${"1"}`;
-    fetchApi(url).then((res) => {
-      // console.log("Single season Data", res);
-      setSeasonData(res);
-      setEpisodes(res.episodes);
-    });
+    const url = `/tv/${props.seriesId}/season/${props.seasonNo}`;
+    fetchApi(url)
+      .then((res) => {
+        setSeasonData(res);
+        setEpisodes(res.episodes || []);
+      })
+      .catch((error) => console.error("Error fetching season data:", error));
   };
 
   const getSeasonClips = () => {
-    const url = `/tv/${props.seriesId}/season/${"1"}/videos`;
-    fetchApi(url).then((res) => {
-      // console.log("Season Videos", res);
-      const allVideos = getSeasonVideos(res.results);
-      setVideos(allVideos.allVideos);
-      setTrailer(allVideos.trailer);
-    });
+    const url = `/tv/${props.seriesId}/season/${props.seasonNo}/videos`;
+    fetchApi(url)
+      .then((res) => {
+        const allVideos = getSeasonVideos(res.results);
+        setVideos(allVideos.allVideos || []);
+        setTrailer(allVideos.trailer || []);
+      })
+      .catch((error) => console.error("Error fetching season videos:", error));
   };
+
   const getSeasonCredits = () => {
-    const url = `/tv/${props.seriesId}/season/${"1"}/credits`;
-    fetchApi(url).then((res) => {
-      // console.log("Season Casts", res);
-      setCasts(getSeasonCast(res.cast));
-    });
+    const url = `/tv/${props.seriesId}/season/${props.seasonNo}/credits`;
+    fetchApi(url)
+      .then((res) => {
+        setCasts(getSeasonCast(res.cast) || []);
+      })
+      .catch((error) => console.error("Error fetching season credits:", error));
   };
+
   useEffect(() => {
+    console.log('clicked on season',props.seasonNo)
     getSeasonData();
     getSeasonClips();
     getSeasonCredits();
-  }, [props.wrapperDisplay]);
+  }, [props.seasonNum]);
+
   return (
-    <div className="detailsWrapper" id={props.wrapperDisplay}>
+    <div className="detailsWrapper" >
       {seasonData ? (
         <>
           <div className="overviewSection">
@@ -66,11 +74,10 @@ const DetailsWrapper = (props) => {
                     <td className="dataResult">{seasonData.air_date}</td>
                   </tr>
                   <tr>
-                    <td className="dataTitle">Total Votes</td>
+                    <td className="dataTitle">Rating</td>
                     <td>:</td>
-                    <td className="dataResult">{props.vote_average}</td>
+                    <td className="dataResult">{`${seasonData.vote_average} / 10`}</td>
                   </tr>
-
                 </tbody>
               </table>
             </div>
@@ -79,10 +86,10 @@ const DetailsWrapper = (props) => {
           <div className="episodesSection">
             <h3>Episodes</h3>
             <div className="episodeWrapper">
-              {episodes
-                ? episodes.map((elem) => {
-                    return <EpisodeCard allEpisodes={elem} key={elem.id} />;
-                  })
+              {episodes.length > 0
+                ? episodes.map((elem) => (
+                    <EpisodeCard allEpisodes={elem} key={elem.id} />
+                  ))
                 : "Loading..."}
             </div>
           </div>
@@ -90,18 +97,16 @@ const DetailsWrapper = (props) => {
           <div className="castContainer">
             <span className="detailsTitle">Casts</span>
             <div className="cardWrapper">
-              {casts
-                ? casts.map((elem) => {
-                    return (
-                      <div className="castCard" key={elem.id}>
-                        <img
-                          src={posterUrl + elem.profile_path}
-                          alt="Actor_image"
-                        />
-                        <span>{elem.original_name}</span>
-                      </div>
-                    );
-                  })
+              {casts.length > 0
+                ? casts.map((elem) => (
+                    <div className="castCard" key={elem.id}>
+                      <img
+                        src={posterUrl + elem.profile_path}
+                        alt="Actor_image"
+                      />
+                      <span>{elem.original_name}</span>
+                    </div>
+                  ))
                 : "Loading ..."}
             </div>
           </div>
@@ -109,20 +114,18 @@ const DetailsWrapper = (props) => {
           <div className="trailerContainer">
             <span className="detailsTitle">Trailer</span>
             <div className="videosWrapper">
-              {trailer ? (
-                trailer.map((elem) => {
-                  return (
-                    <iframe
-                      src={`https://www.youtube.com/embed/${elem}?rel=0&modestbranding=1`}
-                      title={elem.name}
-                      key={elem}
-                      frameBorder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      referrerPolicy="strict-origin-when-cross-origin"
-                      allowFullScreen
-                    ></iframe>
-                  );
-                })
+              {trailer.length > 0 ? (
+                trailer.map((elem) => (
+                  <iframe
+                    src={`https://www.youtube.com/embed/${elem}?rel=0&modestbranding=1`}
+                    title={elem.name}
+                    key={elem}
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    referrerPolicy="strict-origin-when-cross-origin"
+                    allowFullScreen
+                  ></iframe>
+                ))
               ) : (
                 <ReactLoading
                   type={"spinningBubbles"}
@@ -137,20 +140,18 @@ const DetailsWrapper = (props) => {
           <div className="videosContainer">
             <span className="detailsTitle">Videos</span>
             <div className="videosWrapper">
-              {videos ? (
-                videos.map((elem) => {
-                  return (
-                    <iframe
-                      src={`https://www.youtube.com/embed/${elem}?rel=0&modestbranding=1`}
-                      key={elem}
-                      title={elem.name}
-                      frameBorder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      referrerPolicy="strict-origin-when-cross-origin"
-                      allowFullScreen
-                    ></iframe>
-                  );
-                })
+              {videos.length > 0 ? (
+                videos.map((elem) => (
+                  <iframe
+                    src={`https://www.youtube.com/embed/${elem}?rel=0&modestbranding=1`}
+                    key={elem}
+                    title={elem.name}
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    referrerPolicy="strict-origin-when-cross-origin"
+                    allowFullScreen
+                  ></iframe>
+                ))
               ) : (
                 <ReactLoading
                   type={"spinningBubbles"}

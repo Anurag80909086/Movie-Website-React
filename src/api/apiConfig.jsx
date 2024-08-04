@@ -132,7 +132,7 @@ export const getTopActingLeads = (castData) => {
       (member) =>
         member.known_for_department === "Acting" &&
         member.order >= 0 &&
-        member.order <= 20
+        member.order <= 30
     )
     .sort((a, b) => a.order - b.order);
 
@@ -162,7 +162,7 @@ export const getSeasonVideos = (videos) => {
 };
 export const getSeasonCast = (cast) => {
   return cast
-    .filter((member) => member.order >= 0 && member.order <= 20)
+    .filter((member) => member.order >= 0 && member.order <= 30)
     .map((member) => ({
       original_name: member.original_name,
       profile_path: member.profile_path,
