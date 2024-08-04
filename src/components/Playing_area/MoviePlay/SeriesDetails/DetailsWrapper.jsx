@@ -46,14 +46,13 @@ const DetailsWrapper = (props) => {
   };
 
   useEffect(() => {
-    console.log('clicked on season',props.seasonNo)
     getSeasonData();
     getSeasonClips();
     getSeasonCredits();
   }, [props.seasonNum]);
 
   return (
-    <div className="detailsWrapper" >
+    <div className="detailsWrapper">
       {seasonData ? (
         <>
           <div className="overviewSection">
@@ -64,8 +63,8 @@ const DetailsWrapper = (props) => {
               />
             </div>
             <div className="detailsContainer">
-              <h2>{props.seriesName}</h2>
-              <h3 style={{ color: "orange" }}>{seasonData.name}</h3>
+              <p>{props.seriesName}</p>
+              <h3>{seasonData.name}</h3>
               <table>
                 <tbody>
                   <tr>
@@ -84,7 +83,7 @@ const DetailsWrapper = (props) => {
           </div>
 
           <div className="episodesSection">
-            <h3>Episodes</h3>
+            <span className="detailsTitle">Episodes</span>
             <div className="episodeWrapper">
               {episodes.length > 0
                 ? episodes.map((elem) => (
@@ -99,7 +98,7 @@ const DetailsWrapper = (props) => {
             <div className="cardWrapper">
               {casts.length > 0
                 ? casts.map((elem) => (
-                    <div className="castCard" key={elem.id}>
+                    <div className="castCard" key={elem.profile_path}>
                       <img
                         src={posterUrl + elem.profile_path}
                         alt="Actor_image"

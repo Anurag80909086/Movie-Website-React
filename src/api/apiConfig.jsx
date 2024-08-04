@@ -104,7 +104,12 @@ export const checkMovieType = (movie) => {
 export const convertRuntime = (minutes) => {
   const hours = Math.floor(minutes / 60);
   const remainingMinutes = minutes % 60;
-  return `${hours}h ${remainingMinutes}m`;
+
+  if (hours === 0) {
+    return `${remainingMinutes}min`;
+  }
+
+  return `${hours}hr ${remainingMinutes}min`;
 };
 
 export const trailerKey = (props) => {
@@ -148,7 +153,6 @@ export const getFilteredImages = (imagesData) => {
 
   return filteredImages;
 };
-
 
 export const getSeasonVideos = (videos) => {
   return {

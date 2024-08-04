@@ -35,7 +35,10 @@ const SeasonInfo = (prop) => {
         </span>
       </h5>
       <div className="seasons">
-        <div className="wrapperSeason">
+        <div
+          className="wrapperSeason"
+          id={showWrapper ? "wrapperSeasonScroll" : ""}
+        >
           {seasons.length > 0
             ? seasons.map((elem) => (
                 <SeasonCard
@@ -55,7 +58,7 @@ const SeasonInfo = (prop) => {
             seasonNo={seasonNum}
             seriesId={prop.seriesId}
             seriesName={prop.seriesName}
-            key={seasonNum} // Ensure re-render by changing key
+            key={seasonNum}
           />
         )}
       </div>

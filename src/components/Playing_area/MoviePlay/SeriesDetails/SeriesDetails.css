@@ -42,7 +42,6 @@
   gap: 10px;
   overflow-y: scroll;
   height: 95%;
-  /* border: 1px solid green; */
 }
 .closeBtn {
   z-index: 10;
@@ -58,7 +57,6 @@
   transform: scale(0.9);
 }
 .wrapperSeason {
-  /* border: 1px solid red; */
   display: flex;
   flex-wrap: wrap;
   flex-shrink: 1;
@@ -74,11 +72,14 @@
 /* from here details Wrapper starts */
 
 .detailsWrapper {
+  background-color: black;
+  border-radius: 15px;
   height: max-content;
   width: 72%;
   gap: 10px;
   flex-direction: column;
   display: flex;
+  border: 2px solid rgb(0, 181, 236);
 }
 
 /* overviewSection */
@@ -87,25 +88,45 @@
   gap: 10px;
 }
 .overviewSection .posterContainer img {
-  height: 353px;
   width: 236px;
   border-radius: 15px;
   box-shadow: var(--card_shadow_dark);
 }
+.detailsContainer {
+  flex-shrink: 1;
+}
 
-.overviewSection .detailsContainer h2 {
+.overviewSection .detailsContainer p {
   font-size: 35px;
+  text-wrap: wrap;
   font-family: "Quantico", sans-serif;
   font-weight: 400;
   font-style: normal;
 }
+.overviewSection .detailsContainer h3 {
+  font-size: 30px;
+  color: orange;
+}
 
 /* episodes Section */
+.episodesSection,
+.castContainer,
+.trailerContainer,
+.videosContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 0;
+}
 .episodesSection .episodeWrapper {
   display: flex;
   justify-content: left;
   gap: 10px;
   flex-wrap: wrap;
+}
+
+.detailsTitle {
+  font-size: 26px;
 }
 
 /* trailer Section */
@@ -121,4 +142,96 @@
   display: flex;
   gap: 10px;
   justify-content: center;
+}
+
+/* this is responsive section */
+@media screen and (max-width: 900px) {
+  .overviewSection .posterContainer img {
+    width: 25vw;
+  }
+  .overviewSection .detailsContainer p {
+    font-size: 28px;
+  }
+  .overviewSection .detailsContainer h3 {
+    font-size: 26px;
+  }
+  .detailsTitle {
+    font-size: 23px;
+  }
+}
+@media screen and (max-width: 750px) {
+  .season_info {
+    padding: 10px 5px;
+  }
+  .seasons {
+    display: block;
+    overflow-y: scroll;
+    height: 95%;
+  }
+  .wrapperSeason {
+    flex-shrink: 0;
+    position: static;
+    height: max-content;
+    gap: 10px;
+    overflow-x: scroll;
+  }
+  #wrapperSeasonScroll {
+    justify-content: left;
+    flex-wrap: nowrap;
+  }
+  .detailsWrapper {
+    height: max-content;
+    width: 100%;
+    flex-shrink: 0;
+    margin-top: 10px;
+    padding: 10px;
+  }
+  .overviewSection .posterContainer img {
+    width: 28vw;
+  }
+  .overviewSection .detailsContainer p {
+    font-size: 28px;
+  }
+  .overviewSection .detailsContainer h3 {
+    font-size: 26px;
+  }
+  .detailsTitle {
+    font-size: 23px;
+  }
+  .trailerContainer .videosWrapper iframe {
+    height: 46.1vw;
+    width: 81vw;
+  }
+  .videosContainer .videosWrapper iframe {
+    height: 46.1vw;
+    width: 81vw;
+  }
+}
+@media screen and (max-width: 600px) {
+  .overviewSection .posterContainer img {
+    width: 32vw;
+  }
+  .overviewSection .detailsContainer p {
+    font-size: 26px;
+  }
+  .overviewSection .detailsContainer h3 {
+    font-size: 21px;
+  }
+  .detailsTitle {
+    font-size: 23px;
+  }
+}
+@media screen and (max-width: 450px) {
+  .overviewSection .posterContainer img {
+    width: 38vw;
+  }
+  .overviewSection .detailsContainer p {
+    font-size: 22px;
+  }
+  .overviewSection .detailsContainer h3 {
+    font-size: 18px;
+  }
+  .detailsTitle {
+    font-size: 20px;
+  }
 }
