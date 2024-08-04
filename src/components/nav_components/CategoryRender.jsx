@@ -9,13 +9,17 @@ import {
 } from "../../api/apiConfig";
 function CategoryRender(props) {
   const [movie, setMovie] = useState([]);
+  const [page, setPage] = useState(0);
+  const [totalPage, setTotalPage] = useState(0);
   const getMovieData = async () => {
     const url = props.url;
     try {
       const response = await fetch(url, options);
       const data = await response.json();
-      // console.log(props.title, data.results);
+      console.log(props.title, data);
+      setPage(data.page);
       setMovie(data.results);
+      setTotalPage(data.total_pages);
     } catch {
       console.log("error");
     }
@@ -58,6 +62,25 @@ function CategoryRender(props) {
             width={80}
           />
         )}
+      </div>
+      <div className="pageNumWrapper flex">
+        <span
+          className="backBtn"
+          onClick={() => {
+            props.previousPage();
+          }}
+        >
+          <i className="fa-solid fa-arrow-left" title="previous page"></i>
+        </span>
+        <span className="pageNum">{`${page}`}</span>
+        <span
+          className="nextBtn"
+          onClick={() => {
+            props.nextPage(totalPage);
+          }}
+        >
+          <i className="fa-solid fa-arrow-right" title="next page"></i>
+        </span>
       </div>
     </div>
   );

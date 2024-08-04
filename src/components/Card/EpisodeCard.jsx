@@ -5,9 +5,14 @@ const EpisodeCard = ({ allEpisodes }) => {
   return (
     <div className="episodeCard">
       <img src={posterUrl + allEpisodes.still_path} alt="episodeImg" />
-      <span style={{ color: "orange" }}>{`Episode : ${
-        allEpisodes.episode_number
-      } | Duration : ${convertRuntime(allEpisodes.runtime)}`}</span>
+      <div style={{ display: "flex", gap: "10px", justifyContent: "center" }}>
+        <span style={{ color: "orange" }}>
+          Episode : {allEpisodes.episode_number}
+        </span>
+        <span style={{ color: "yellow" }}>
+          Duration : {convertRuntime(allEpisodes.runtime)}
+        </span>
+      </div>
       <span>{allEpisodes.name}</span>
     </div>
   );

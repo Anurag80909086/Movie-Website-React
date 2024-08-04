@@ -132,7 +132,7 @@ const MovieDetail = ({ props }) => {
             </button>
           </div>
         </div>
-        <div className="bigCard">
+        <div className="bigCard" onClick={showMoreDetails}>
           <img
             key={imageKey}
             src={posterUrl + props.poster_path}

@@ -22,19 +22,6 @@ export const fetchApi = async (prop) => {
   }
 };
 
-export const trendingAll = {
-  title: "Trending",
-  url: `${baseUrl}/trending/all/day?language=en-US&page=${page}&sort_by=popularity.desc`,
-};
-export const Movie = {
-  title: "Movies",
-  url: `${baseUrl}/discover/movie?include_adult=true&include_video=true&language=en-US&page=${page}&sort_by=popularity.desc`,
-};
-export const Series = {
-  title: "Series",
-  url: `${baseUrl}/discover/tv?include_adult=true&include_null_first_air_dates=true&language=en-US&page=${page}&sort_by=popularity.desc`,
-};
-
 export const popularMovie = {
   title: "Popular Movies",
   url: `${baseUrl}/movie/popular?language=en-US&page=${page}`,
@@ -57,10 +44,6 @@ export const onTheAirSeries = {
   url: `${baseUrl}/tv/on_the_air?language=en-US&page=${page}`,
 };
 
-export const latestMovies = {
-  title: "Latest Movies",
-  url: `${baseUrl}/movie/now_playing?language=en-US&page=${page}`,
-};
 export const upcommingMovie = {
   title: "Upcomming Movie",
   url: `${baseUrl}/movie/upcoming?language=en-US&page=${page}`,

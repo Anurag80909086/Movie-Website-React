@@ -1,53 +1,300 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import CategoryRender from "./CategoryRender";
-import {
-  Movie,
-  Series,
-  trendingAll,
-  latestMovies,
-  baseUrl,
-  genre,
-} from "../../api/apiConfig";
+import { baseUrl, genre } from "../../api/apiConfig";
+
+export const Trending = () => {
+  const [page, setPages] = useState(1);
+  const nextPage = (totalPages) => {
+    if (page <= totalPages) {
+      setPages(page + 1);
+    }
+  };
+  const previousPage = (totalPages) => {
+    if (page > 1) {
+      setPages(page - 1);
+    }
+  };
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [page]);
+  const title = "Trending";
+  const url = `${baseUrl}/trending/all/day?language=en-US&page=${page}&sort_by=popularity.desc`;
+  return (
+    <CategoryRender
+      title={title}
+      url={url}
+      nextPage={nextPage}
+      previousPage={previousPage}
+    />
+  );
+};
+
 export const Movies = () => {
-  return <CategoryRender title={Movie.title} url={Movie.url} />;
+  const [page, setPages] = useState(1);
+  const nextPage = (totalPages) => {
+    if (page <= totalPages) {
+      setPages(page + 1);
+    }
+  };
+  const previousPage = (totalPages) => {
+    if (page > 1) {
+      setPages(page - 1);
+    }
+  };
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [page]);
+  const title = "Movies";
+  const url = `${baseUrl}/discover/movie?include_adult=true&include_video=true&language=en-US&page=${page}&sort_by=popularity.desc`;
+  return (
+    <CategoryRender
+      title={title}
+      url={url}
+      nextPage={nextPage}
+      previousPage={previousPage}
+    />
+  );
 };
 
 export const TvShows = () => {
-  return <CategoryRender title={Series.title} url={Series.url} />;
+  const [page, setPages] = useState(1);
+  const nextPage = (totalPages) => {
+    if (page <= totalPages) {
+      setPages(page + 1);
+    }
+  };
+  const previousPage = (totalPages) => {
+    if (page > 1) {
+      setPages(page - 1);
+    }
+  };
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [page]);
+  const title = "Series";
+  const url = `${baseUrl}/discover/tv?include_adult=true&include_null_first_air_dates=true&language=en-US&page=${page}&sort_by=popularity.desc`;
+  return (
+    <CategoryRender
+      title={title}
+      url={url}
+      nextPage={nextPage}
+      previousPage={previousPage}
+    />
+  );
 };
 
-export const Trending = () => {
-  return <CategoryRender title={trendingAll.title} url={trendingAll.url} />;
-};
 export const LatestMovies = () => {
-  return <CategoryRender title={latestMovies.title} url={latestMovies.url} />;
+  const [page, setPages] = useState(1);
+  const nextPage = (totalPages) => {
+    if (page <= totalPages) {
+      setPages(page + 1);
+    }
+  };
+  const previousPage = (totalPages) => {
+    if (page > 1) {
+      setPages(page - 1);
+    }
+  };
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [page]);
+  const title = "Latest Movies";
+  const url = `${baseUrl}/movie/now_playing?language=en-US&page=${page}`;
+  return (
+    <CategoryRender
+      title={title}
+      url={url}
+      nextPage={nextPage}
+      previousPage={previousPage}
+    />
+  );
 };
 
 export const SearchResult = (props) => {
-  const searchUrl = `${baseUrl}/search/multi?query=${props.search}&include_adult=false&language=en-US&page=1`;
-  return <CategoryRender title="Your search Results" url={searchUrl} />;
+  const [page, setPages] = useState(1);
+  const nextPage = (totalPages) => {
+    if (page <= totalPages) {
+      setPages(page + 1);
+    }
+  };
+  const previousPage = (totalPages) => {
+    if (page > 1) {
+      setPages(page - 1);
+    }
+  };
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [page]);
+  const title = "Search Results";
+  const url = `${baseUrl}/search/multi?query=${props.search}&include_adult=false&language=en-US&page=${page}`;
+  return (
+    <CategoryRender
+      title={title}
+      url={url}
+      nextPage={nextPage}
+      previousPage={previousPage}
+    />
+  );
 };
+
 export const Horror = () => {
-  const genreUrl = `${baseUrl}/discover/movie?with_genres=${genre.Horror}`;
-  return <CategoryRender title={"Horror Movies"} url={genreUrl} />;
+  const [page, setPages] = useState(1);
+  const nextPage = (totalPages) => {
+    if (page <= totalPages) {
+      setPages(page + 1);
+    }
+  };
+  const previousPage = (totalPages) => {
+    if (page > 1) {
+      setPages(page - 1);
+    }
+  };
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [page]);
+  const title = "Horror Movies";
+  const url = `${baseUrl}/discover/movie?with_genres=${genre.Horror}&page=${page}`;
+  return (
+    <CategoryRender
+      title={title}
+      url={url}
+      nextPage={nextPage}
+      previousPage={previousPage}
+    />
+  );
 };
+
 export const ScienceFiction = () => {
-  const genreUrl = `${baseUrl}/discover/movie?with_genres=${genre.ScienceFiction}`;
-  return <CategoryRender title={"Sci-Fi Movies"} url={genreUrl} />;
+  const [page, setPages] = useState(1);
+  const nextPage = (totalPages) => {
+    if (page <= totalPages) {
+      setPages(page + 1);
+    }
+  };
+  const previousPage = (totalPages) => {
+    if (page > 1) {
+      setPages(page - 1);
+    }
+  };
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [page]);
+  const title = "Science Fiction Movies";
+  const url = `${baseUrl}/discover/movie?with_genres=${genre.ScienceFiction}&page=${page}`;
+  return (
+    <CategoryRender
+      title={title}
+      url={url}
+      nextPage={nextPage}
+      previousPage={previousPage}
+    />
+  );
 };
+
 export const Thriller = () => {
-  const genreUrl = `${baseUrl}/discover/movie?with_genres=${genre.Thriller}`;
-  return <CategoryRender title={"Thriller Movies"} url={genreUrl} />;
+  const [page, setPages] = useState(1);
+  const nextPage = (totalPages) => {
+    if (page <= totalPages) {
+      setPages(page + 1);
+    }
+  };
+  const previousPage = (totalPages) => {
+    if (page > 1) {
+      setPages(page - 1);
+    }
+  };
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [page]);
+  const title = "Thriller Movies";
+  const url = `${baseUrl}/discover/movie?with_genres=${genre.Thriller}&page=${page}`;
+  return (
+    <CategoryRender
+      title={title}
+      url={url}
+      nextPage={nextPage}
+      previousPage={previousPage}
+    />
+  );
 };
+
 export const Romance = () => {
-  const genreUrl = `${baseUrl}/discover/movie?with_genres=${genre.Romance}`;
-  return <CategoryRender title={"Romance Movies"} url={genreUrl} />;
+  const [page, setPages] = useState(1);
+  const nextPage = (totalPages) => {
+    if (page <= totalPages) {
+      setPages(page + 1);
+    }
+  };
+  const previousPage = (totalPages) => {
+    if (page > 1) {
+      setPages(page - 1);
+    }
+  };
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [page]);
+  const title = "Romantic Movies";
+  const url = `${baseUrl}/discover/movie?with_genres=${genre.Romance}&page=${page}`;
+  return (
+    <CategoryRender
+      title={title}
+      url={url}
+      nextPage={nextPage}
+      previousPage={previousPage}
+    />
+  );
 };
+
 export const Crime = () => {
-  const genreUrl = `${baseUrl}/discover/movie?with_genres=${genre.Crime}`;
-  return <CategoryRender title={"Crime Movies"} url={genreUrl} />;
+  const [page, setPages] = useState(1);
+  const nextPage = (totalPages) => {
+    if (page <= totalPages) {
+      setPages(page + 1);
+    }
+  };
+  const previousPage = (totalPages) => {
+    if (page > 1) {
+      setPages(page - 1);
+    }
+  };
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [page]);
+  const title = "Crime Movies";
+  const url = `${baseUrl}/discover/movie?with_genres=${genre.Crime}&page=${page}`;
+  return (
+    <CategoryRender
+      title={title}
+      url={url}
+      nextPage={nextPage}
+      previousPage={previousPage}
+    />
+  );
 };
+
 export const Animation = () => {
-  const genreUrl = `${baseUrl}/discover/movie?with_genres=${genre.Animation}`;
-  return <CategoryRender title={"Animation Movies"} url={genreUrl} />;
+  const [page, setPages] = useState(1);
+  const nextPage = (totalPages) => {
+    if (page <= totalPages) {
+      setPages(page + 1);
+    }
+  };
+  const previousPage = (totalPages) => {
+    if (page > 1) {
+      setPages(page - 1);
+    }
+  };
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [page]);
+  const title = "Animation Movies";
+  const url = `${baseUrl}/discover/movie?with_genres=${genre.Animation}&page=${page}`;
+  return (
+    <CategoryRender
+      title={title}
+      url={url}
+      nextPage={nextPage}
+      previousPage={previousPage}
+    />
+  );
 };

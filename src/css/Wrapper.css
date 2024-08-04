@@ -20,6 +20,23 @@
   gap: 20px;
 }
 
+.pageNumWrapper {
+  gap: 10px;
+}
+.pageNumWrapper .pageNum {
+  color: orange;
+  font-size: 25px;
+  font-weight: 600;
+}
+.pageNumWrapper .backBtn,
+.nextBtn {
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+.pageNumWrapper i:active {
+  transform: scale(92%);
+}
 /* this is Recommendation bar */
 
 .recommend-container {
