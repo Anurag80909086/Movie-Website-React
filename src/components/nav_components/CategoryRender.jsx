@@ -16,7 +16,7 @@ function CategoryRender(props) {
     try {
       const response = await fetch(url, options);
       const data = await response.json();
-      console.log(props.title, data);
+      // console.log(props.title, data);
       setPage(data.page);
       setMovie(data.results);
       setTotalPage(data.total_pages);

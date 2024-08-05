@@ -1,15 +1,23 @@
 import React, { useState, useEffect } from "react";
-import { posterUrl } from "../../../../api/apiConfig";
+import { posterUrl, fetchApi, trailerKey } from "../../../../api/apiConfig";
 import "./SeriesDetails.css";
 import SeasonInfo from "./SeasonInfo";
 
 const MovieDetail = ({ props }) => {
   const [imageKey, setImageKey] = useState(Date.now());
   const [showSeason, setShowSeason] = useState(false);
-
+  const [trailer, setTrailer] = useState();
   const updateShow = () => setShowSeason((prev) => !prev);
   const closeSeason = () => setShowSeason(false);
 
+  function getTrailer() {
+    const url = `/tv/${props.id}/videos?language=en-US`;
+    fetchApi(url).then((res) => {
+      // console.log("Trailer",res );
+      setTrailer(trailerKey(res));
+    });
+  }
+  getTrailer();
   useEffect(() => {
     setImageKey(Date.now());
   }, [props.backdrop_path, props.poster_path]);
@@ -66,6 +74,7 @@ const MovieDetail = ({ props }) => {
             alt="movie_image"
           />
         </div>
+
         {showSeason && (
           <SeasonInfo
             class={showSeason ? "season_show" : "season_hide"}

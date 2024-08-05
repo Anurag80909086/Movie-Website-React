@@ -66,6 +66,7 @@ function Navbar(props) {
         <NavLink to="/animation/movies" onClick={hideNavbar}>
           <li>Animation</li>
         </NavLink>
+
         <i className="fa-solid fa-x" id="crossIcon" onClick={hideNavbar}></i>
       </ul>
       <i

@@ -270,7 +270,13 @@ const MovieDetail = ({ props }) => {
               <div className="imageWrapper">
                 {casts
                   ? images.map((elem) => {
-                      return <img src={posterUrl + elem} alt="movie_images" key={elem.id}/>;
+                      return (
+                        <img
+                          src={posterUrl + elem}
+                          alt="movie_images"
+                          key={elem}
+                        />
+                      );
                     })
                   : "Loading ..."}
               </div>
@@ -282,7 +288,7 @@ const MovieDetail = ({ props }) => {
                   videos.map((elem) => {
                     return (
                       <iframe
-                      key={elem.id}
+                        key={elem.key}
                         src={`https://www.youtube.com/embed/${elem.key}?rel=0&modestbranding=1`}
                         title={elem.name}
                         frameBorder="0"
