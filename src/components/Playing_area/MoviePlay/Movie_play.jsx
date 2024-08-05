@@ -30,25 +30,25 @@ function Movie_play() {
 
   const { movieID, movieType } = separateID(movieId.movie);
 
-  const getMovieData = async (type) => {
-    try {
-      const url = `${baseUrl}/${type}/${movieID}?language=en-US`;
-      const response = await fetch(url, options);
-      const detailData = await response.json();
-      // console.log("More Details", detailData);
-      setMovie(detailData);
-    } catch {
-      console.log("error");
-    }
-  };
-
   useEffect(() => {
+    const getMovieData = async (type) => {
+      try {
+        const url = `${baseUrl}/${type}/${movieID}?language=en-US`;
+        const response = await fetch(url, options);
+        const detailData = await response.json();
+        // console.log("More Details", detailData);
+        setMovie(detailData);
+      } catch {
+        console.error("Error fetching movie data");
+      }
+    };
+
     if (movieType === "S") {
       getMovieData("tv");
     } else if (movieType === "M") {
       getMovieData("movie");
     }
-  }, [movieId, movieType]);
+  }, [movieID, movieType]);
 
   return (
     <div className="movieplay_container flex">

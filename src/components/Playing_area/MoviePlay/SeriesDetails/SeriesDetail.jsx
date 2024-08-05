@@ -2,9 +2,12 @@ import React, { useState, useEffect } from "react";
 import { posterUrl, fetchApi, trailerKey } from "../../../../api/apiConfig";
 import "./SeriesDetails.css";
 import SeasonInfo from "./SeasonInfo";
+import ReactLoading from "react-loading";
 
 const MovieDetail = ({ props }) => {
   const [imageKey, setImageKey] = useState(Date.now());
+  const [showPlay, setShowPlay] = useState(false);
+
   const [showSeason, setShowSeason] = useState(false);
   const [trailer, setTrailer] = useState();
   const updateShow = () => setShowSeason((prev) => !prev);
@@ -17,6 +20,14 @@ const MovieDetail = ({ props }) => {
       setTrailer(trailerKey(res));
     });
   }
+
+  const hideTrailerPlay = () => {
+    setShowPlay(false);
+    setTrailer(null);
+  };
+  const showTrailerPlay = () => {
+    setShowPlay(true);
+  };
   getTrailer();
   useEffect(() => {
     setImageKey(Date.now());
@@ -62,7 +73,11 @@ const MovieDetail = ({ props }) => {
             >
               Watch Now
             </button>
-            <button type="button" className="btn btn-outline-light">
+            <button
+              type="button"
+              className="btn btn-outline-light"
+              onClick={showTrailerPlay}
+            >
               Watch Trailer
             </button>
           </div>
@@ -74,7 +89,35 @@ const MovieDetail = ({ props }) => {
             alt="movie_image"
           />
         </div>
-
+        <div
+          id="trailerContainer"
+          className={showPlay ? "showContainer" : "hideContainer"}
+        >
+          <i
+            className="fa-solid fa-x"
+            id="crossIcon"
+            onClick={hideTrailerPlay}
+          ></i>
+          {trailer ? (
+            <iframe
+              width="100%"
+              height="100%"
+              src={`https://www.youtube.com/embed/${trailer.key}?rel=0&modestbranding=1`}
+              title={trailer.name}
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+            ></iframe>
+          ) : (
+            <ReactLoading
+              type={"spinningBubbles"}
+              color={"#9b59b6"}
+              height={80}
+              width={80}
+            />
+          )}
+        </div>
         {showSeason && (
           <SeasonInfo
             class={showSeason ? "season_show" : "season_hide"}

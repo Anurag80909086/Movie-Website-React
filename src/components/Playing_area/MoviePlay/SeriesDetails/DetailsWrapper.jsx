@@ -8,7 +8,7 @@ import {
   getSeasonCast,
 } from "../../../../api/apiConfig";
 
-const DetailsWrapper = (props) => {
+const DetailsWrapper = ({ seriesId, seasonNum, seriesName }) => {
   const [seasonData, setSeasonData] = useState(null);
   const [episodes, setEpisodes] = useState([]);
   const [trailer, setTrailer] = useState([]);
@@ -16,7 +16,7 @@ const DetailsWrapper = (props) => {
   const [casts, setCasts] = useState([]);
 
   const getSeasonData = () => {
-    const url = `/tv/${props.seriesId}/season/${props.seasonNo}`;
+    const url = `/tv/${seriesId}/season/${seasonNum}`;
     fetchApi(url)
       .then((res) => {
         setSeasonData(res);
@@ -26,7 +26,7 @@ const DetailsWrapper = (props) => {
   };
 
   const getSeasonClips = () => {
-    const url = `/tv/${props.seriesId}/season/${props.seasonNo}/videos`;
+    const url = `/tv/${seriesId}/season/${seasonNum}/videos`;
     fetchApi(url)
       .then((res) => {
         const allVideos = getSeasonVideos(res.results);
@@ -37,7 +37,7 @@ const DetailsWrapper = (props) => {
   };
 
   const getSeasonCredits = () => {
-    const url = `/tv/${props.seriesId}/season/${props.seasonNo}/credits`;
+    const url = `/tv/${seriesId}/season/${seasonNum}/credits`;
     fetchApi(url)
       .then((res) => {
         setCasts(getSeasonCast(res.cast) || []);
@@ -49,7 +49,7 @@ const DetailsWrapper = (props) => {
     getSeasonData();
     getSeasonClips();
     getSeasonCredits();
-  }, [props.seasonNum]);
+  }, [seriesId, seasonNum]);
 
   return (
     <div className="detailsWrapper">
@@ -63,7 +63,7 @@ const DetailsWrapper = (props) => {
               />
             </div>
             <div className="detailsContainer">
-              <p>{props.seriesName}</p>
+              <p>{seriesName}</p>
               <h3>{seasonData.name}</h3>
               <table>
                 <tbody>

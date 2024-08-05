@@ -32,9 +32,10 @@ const MovieDetail = ({ props }) => {
     setShowDetails(true);
     hideTrailerPlay();
   };
+
   const hideTrailerPlay = () => {
     setShowPlay(false);
-    setTrailer();
+    setTrailer(null);
   };
 
   const showTrailerPlay = () => {
@@ -42,44 +43,40 @@ const MovieDetail = ({ props }) => {
     hideMoreDetails();
   };
 
-  const getAllVideos = () => {
-    const url = `/movie/${props.id}/videos?language=en-US`;
-    fetchApi(url).then((res) => {
-      // console.log("All Movie Videos", res.results);
-      setTrailer(trailerKey(res));
-      setVideos(extractAllYoutubeVideos(res));
-    });
-  };
-
-  const getAllPhotos = () => {
-    setImages("");
-    const url = `/movie/${props.id}/images`;
-    fetchApi(url).then((res) => {
-      // console.log("All movie Images", res);
-      setImages(getFilteredImages(res));
-    });
-  };
-
-  const getAllCasts = () => {
-    const url = `/movie/${props.id}/credits?language=en-US`;
-    fetchApi(url).then((res) => {
-      // console.log("All movie Images", res);
-      setCasts(getTopActingLeads(res));
-    });
-  };
-
+  // Fetch all videos when `showPlay` changes to true
   useEffect(() => {
     if (showPlay) {
-      getAllVideos();
+      const url = `/movie/${props.id}/videos?language=en-US`;
+      fetchApi(url).then((res) => {
+        setTrailer(trailerKey(res));
+        setVideos(extractAllYoutubeVideos(res));
+      });
     }
-  }, [showPlay]);
+  }, [showPlay, props.id]);
+
+  // Fetch all photos and casts when `showDetails` changes to true
   useEffect(() => {
     if (showDetails) {
-      getAllVideos();
-      getAllPhotos();
-      getAllCasts();
+      const fetchDetails = async () => {
+        const videoUrl = `/movie/${props.id}/videos?language=en-US`;
+        const photoUrl = `/movie/${props.id}/images`;
+        const castUrl = `/movie/${props.id}/credits?language=en-US`;
+
+        const [videoRes, photoRes, castRes] = await Promise.all([
+          fetchApi(videoUrl),
+          fetchApi(photoUrl),
+          fetchApi(castUrl),
+        ]);
+
+        setTrailer(trailerKey(videoRes));
+        setVideos(extractAllYoutubeVideos(videoRes));
+        setImages(getFilteredImages(photoRes));
+        setCasts(getTopActingLeads(castRes));
+      };
+
+      fetchDetails();
     }
-  }, [showDetails]);
+  }, [showDetails, props.id]);
 
   return (
     <>
