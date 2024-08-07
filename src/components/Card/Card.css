@@ -1,8 +1,8 @@
 .movie_card {
   border-radius: 13px;
   width: 180px;
-  flex-shrink: 0;
   height: 256px;
+  flex-shrink: 0;
   position: relative;
   cursor: pointer;
   user-select: none;
@@ -101,9 +101,29 @@
     height: 247px;
   }
 }
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 500px) {
   .movie_card {
     width: 158px;
     height: 232px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .movie_card {
+    width: 36vw;
+    height: 54vw;
+  }
+  .movieInfo .movie_name {
+    font-size: 13px;
+  }
+  .movieInfo .movie_year,
+  .movie_type,
+  .movie_language {
+    font-size: 12px;
+  }
+  .downloadBtn {
+    padding: 2px 10px;
+    font-size: 11px;
+    font-weight: 400;
   }
 }
