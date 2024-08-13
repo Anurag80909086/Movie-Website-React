@@ -52,10 +52,9 @@ const SeasonInfo = (prop) => {
               ))
             : "Loading..."}
         </div>
-
-        {showWrapper && seasonNum !== null && (
+        {showWrapper && seasonNum && (
           <DetailsWrapper
-            seasonNo={seasonNum}
+            seasonNum={seasonNum}
             seriesId={prop.seriesId}
             seriesName={prop.seriesName}
             key={seasonNum}

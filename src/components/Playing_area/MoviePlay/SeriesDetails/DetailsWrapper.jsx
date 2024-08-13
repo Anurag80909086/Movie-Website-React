@@ -7,8 +7,8 @@ import {
   getSeasonVideos,
   getSeasonCast,
 } from "../../../../api/apiConfig";
-
 const DetailsWrapper = ({ seriesId, seasonNum, seriesName }) => {
+
   const [seasonData, setSeasonData] = useState(null);
   const [episodes, setEpisodes] = useState([]);
   const [trailer, setTrailer] = useState([]);
@@ -19,6 +19,7 @@ const DetailsWrapper = ({ seriesId, seasonNum, seriesName }) => {
     const url = `/tv/${seriesId}/season/${seasonNum}`;
     fetchApi(url)
       .then((res) => {
+        // console.log(res);
         setSeasonData(res);
         setEpisodes(res.episodes || []);
       })
