@@ -1,10 +1,20 @@
 import { Link } from "react-router-dom";
 import "./Card.css";
+import NoImage from "./no-photo-card.jpg";
+
 function Card(props) {
   var type = props.type === "Movie" ? "M" : "S";
+
   return (
     <div className="movie_card">
-      <img src={props.imgSrc} alt="movie_image" />
+      <img
+        src={props.imgSrc}
+        alt="movie_image"
+        onError={(e) => {
+          e.target.onerror = null;
+          e.target.src = NoImage;
+        }}
+      />
       <div className="movieInfo">
         <div className="movie_name">{props.name}</div>
         <div className="movie_year">{props.year}</div>

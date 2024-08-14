@@ -9,6 +9,7 @@ import {
   getFilteredImages,
 } from "../../../../api/apiConfig";
 import ReactLoading from "react-loading";
+import no_user_img from "./no-user-img.jpg";
 
 const MovieDetail = ({ props }) => {
   const [imageKey, setImageKey] = useState(Date.now());
@@ -252,7 +253,11 @@ const MovieDetail = ({ props }) => {
                       return (
                         <div className="castCard" key={elem.id}>
                           <img
-                            src={posterUrl + elem.profile_path}
+                            src={
+                              elem.profile_path == null
+                                ? no_user_img
+                                : posterUrl + elem.profile_path
+                            }
                             alt="Actor_image"
                           />
                           <span>{elem.original_name}</span>

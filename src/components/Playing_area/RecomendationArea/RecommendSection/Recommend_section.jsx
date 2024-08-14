@@ -10,6 +10,7 @@ const Recommend_section = ({ title, url }) => {
     try {
       const response = await fetch(url, options);
       const data = await response.json();
+      // console.log(data);
       setMovies(data.results);
     } catch (error) {
       console.error("Error fetching movie data:", error);
@@ -24,22 +25,26 @@ const Recommend_section = ({ title, url }) => {
     <div className="recommend-container">
       <h3>{title}</h3>
       <section className="scroll-container">
-        {movies.length > 0 ? (
-          movies.map((movie) => (
-            <Card
-              key={movie.id}
-              name={movie.original_title || movie.original_name}
-              type={checkMovieType(movie)}
-              year={movie.first_air_date || movie.release_date}
-              language={
-                movie.original_language === "en"
-                  ? "English"
-                  : movie.original_language
-              }
-              imgSrc={`${posterUrl}${movie.poster_path}`}
-              link={`/${movie.id}`}
-            />
-          ))
+        {movies ? (
+          movies.length > 0 ? (
+            movies.map((movie) => (
+              <Card
+                key={movie.id}
+                name={movie.original_title || movie.original_name}
+                type={checkMovieType(movie)}
+                year={movie.first_air_date || movie.release_date}
+                language={
+                  movie.original_language === "en"
+                    ? "English"
+                    : movie.original_language
+                }
+                imgSrc={`${posterUrl}${movie.poster_path}`}
+                link={`/${movie.id}`}
+              />
+            ))
+          ) : (
+            "No Recomendation"
+          )
         ) : (
           <ReactLoading
             type={"spinningBubbles"}

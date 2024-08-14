@@ -7,8 +7,9 @@ import {
   getSeasonVideos,
   getSeasonCast,
 } from "../../../../api/apiConfig";
-const DetailsWrapper = ({ seriesId, seasonNum, seriesName }) => {
+import no_user_img from "./no-user-img.jpg";
 
+const DetailsWrapper = ({ seriesId, seasonNum, seriesName }) => {
   const [seasonData, setSeasonData] = useState(null);
   const [episodes, setEpisodes] = useState([]);
   const [trailer, setTrailer] = useState([]);
@@ -19,7 +20,7 @@ const DetailsWrapper = ({ seriesId, seasonNum, seriesName }) => {
     const url = `/tv/${seriesId}/season/${seasonNum}`;
     fetchApi(url)
       .then((res) => {
-        // console.log(res);
+        console.log(res);
         setSeasonData(res);
         setEpisodes(res.episodes || []);
       })
@@ -45,7 +46,6 @@ const DetailsWrapper = ({ seriesId, seasonNum, seriesName }) => {
       })
       .catch((error) => console.error("Error fetching season credits:", error));
   };
-
   useEffect(() => {
     getSeasonData();
     getSeasonClips();
@@ -99,9 +99,13 @@ const DetailsWrapper = ({ seriesId, seasonNum, seriesName }) => {
             <div className="cardWrapper">
               {casts.length > 0
                 ? casts.map((elem) => (
-                    <div className="castCard" key={elem.profile_path}>
+                    <div className="castCard" key={elem.original_name}>
                       <img
-                        src={posterUrl + elem.profile_path}
+                        src={
+                          elem.profile_path == null
+                            ? no_user_img
+                            : posterUrl + elem.profile_path
+                        }
                         alt="Actor_image"
                       />
                       <span>{elem.original_name}</span>
@@ -114,18 +118,22 @@ const DetailsWrapper = ({ seriesId, seasonNum, seriesName }) => {
           <div className="trailerContainer">
             <span className="detailsTitle">Trailer</span>
             <div className="videosWrapper">
-              {trailer.length > 0 ? (
-                trailer.map((elem) => (
-                  <iframe
-                    src={`https://www.youtube.com/embed/${elem}?rel=0&modestbranding=1`}
-                    title={elem.name}
-                    key={elem}
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    referrerPolicy="strict-origin-when-cross-origin"
-                    allowFullScreen
-                  ></iframe>
-                ))
+              {trailer ? (
+                trailer.length > 0 ? (
+                  trailer.map((elem) => (
+                    <iframe
+                      src={`https://www.youtube.com/embed/${elem}?rel=0&modestbranding=1`}
+                      title={elem.name}
+                      key={elem}
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      referrerPolicy="strict-origin-when-cross-origin"
+                      allowFullScreen
+                    ></iframe>
+                  ))
+                ) : (
+                  "No trailer found !!"
+                )
               ) : (
                 <ReactLoading
                   type={"spinningBubbles"}
@@ -140,18 +148,22 @@ const DetailsWrapper = ({ seriesId, seasonNum, seriesName }) => {
           <div className="videosContainer">
             <span className="detailsTitle">Videos</span>
             <div className="videosWrapper">
-              {videos.length > 0 ? (
-                videos.map((elem) => (
-                  <iframe
-                    src={`https://www.youtube.com/embed/${elem}?rel=0&modestbranding=1`}
-                    key={elem}
-                    title={elem.name}
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    referrerPolicy="strict-origin-when-cross-origin"
-                    allowFullScreen
-                  ></iframe>
-                ))
+              {videos ? (
+                videos.length > 0 ? (
+                  videos.map((elem) => (
+                    <iframe
+                      src={`https://www.youtube.com/embed/${elem}?rel=0&modestbranding=1`}
+                      key={elem}
+                      title={elem.name}
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      referrerPolicy="strict-origin-when-cross-origin"
+                      allowFullScreen
+                    ></iframe>
+                  ))
+                ) : (
+                  "No video found !!"
+                )
               ) : (
                 <ReactLoading
                   type={"spinningBubbles"}
