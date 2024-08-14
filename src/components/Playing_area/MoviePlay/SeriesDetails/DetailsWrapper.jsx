@@ -8,6 +8,7 @@ import {
   getSeasonCast,
 } from "../../../../api/apiConfig";
 import no_user_img from "./no-user-img.jpg";
+import no_photo_card from "./no-photo-card.jpg";
 
 const DetailsWrapper = ({ seriesId, seasonNum, seriesName }) => {
   const [seasonData, setSeasonData] = useState(null);
@@ -20,7 +21,7 @@ const DetailsWrapper = ({ seriesId, seasonNum, seriesName }) => {
     const url = `/tv/${seriesId}/season/${seasonNum}`;
     fetchApi(url)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         setSeasonData(res);
         setEpisodes(res.episodes || []);
       })
@@ -61,6 +62,10 @@ const DetailsWrapper = ({ seriesId, seasonNum, seriesName }) => {
               <img
                 src={posterUrl + seasonData.poster_path}
                 alt="Season Poster"
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = no_photo_card;
+                }}
               />
             </div>
             <div className="detailsContainer">

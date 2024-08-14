@@ -111,7 +111,7 @@
   height: 470px;
   width: 320px;
   border-radius: 31px;
-  box-shadow: var(--card_shadow_lite);
+  /* box-shadow: var(--card_shadow_lite); */
 }
 .deepDetailsContainer .detailsContainer {
   display: flex;
