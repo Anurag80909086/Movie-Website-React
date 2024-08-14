@@ -7,23 +7,45 @@ import {
   checkMovieType,
   getLanguageName,
 } from "../../api/apiConfig";
+
 function CategoryRender(props) {
   const [movie, setMovie] = useState([]);
   const [page, setPage] = useState(0);
   const [totalPage, setTotalPage] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
   const getMovieData = async () => {
     const url = props.url;
     try {
+      setLoading(true);
+      setError("");
       const response = await fetch(url, options);
+
+      if (!response.ok) {
+        throw new Error("Error connecting to servers !!");
+      }
+
       const data = await response.json();
-      // console.log(props.title, data);
+
+      if (!data.results || data.results.length === 0) {
+        throw new Error("No Results !! ");
+      }
+
       setPage(data.page);
       setMovie(data.results);
       setTotalPage(data.total_pages);
-    } catch {
-      console.log("error");
+    } catch (error) {
+      if (error.message === "Failed to fetch") {
+        setError("Please connect to the internet !!");
+      } else {
+        setError(error.message);
+      }
+    } finally {
+      setLoading(false);
     }
   };
+
   useEffect(() => {
     getMovieData();
   }, [props.url]);
@@ -32,35 +54,27 @@ function CategoryRender(props) {
     <div className="working_area">
       <center className="cards-title">{props.title}</center>
       <div className="card-container">
-        {movie ? (
-          movie.map((movie, index) => {
-            return (
-              <Card
-                key={movie.id}
-                name={
-                  movie.original_title
-                    ? movie.original_title
-                    : movie.original_name
-                }
-                type={checkMovieType(movie)}
-                year={
-                  movie.first_air_date
-                    ? movie.first_air_date
-                    : movie.release_date
-                }
-                language={getLanguageName(movie.original_language)}
-                imgSrc={`${posterUrl}${movie.poster_path}`}
-                link={`/${movie.id}`}
-              />
-            );
-          })
-        ) : (
+        {loading ? (
           <ReactLoading
             type={"spinningBubbles"}
             color={"#9b59b6"}
             height={80}
             width={80}
           />
+        ) : error ? (
+          <div className="error-message">{error}</div>
+        ) : (
+          movie.map((movie, index) => (
+            <Card
+              key={movie.id}
+              name={movie.original_title || movie.original_name}
+              type={checkMovieType(movie)}
+              year={movie.first_air_date || movie.release_date}
+              language={getLanguageName(movie.original_language)}
+              imgSrc={`${posterUrl}${movie.poster_path}`}
+              link={`/${movie.id}`}
+            />
+          ))
         )}
       </div>
       <div className="pageNumWrapper flex">

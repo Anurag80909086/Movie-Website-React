@@ -37,6 +37,11 @@
 .pageNumWrapper i:active {
   transform: scale(92%);
 }
+
+.error-message {
+  color: rgb(245, 44, 44);
+  font-size: 20px;
+}
 /* this is Recommendation bar */
 
 .recommend-container {
