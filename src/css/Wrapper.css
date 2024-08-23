@@ -1,6 +1,5 @@
-/* this is card container  */
-
-.working_area {
+/* Card Container */
+.working-area {
   border-radius: var(--container_borderRadius);
   box-shadow: var(--container_shadow_dark);
   background: var(--container_color_dark);
@@ -21,6 +20,9 @@
 }
 
 .pageNumWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   gap: 10px;
 }
 .pageNumWrapper .pageNum {
@@ -29,21 +31,21 @@
   font-weight: 600;
 }
 .pageNumWrapper .backBtn,
-.nextBtn {
+.pageNumWrapper .nextBtn {
   color: white;
   font-size: 20px;
   cursor: pointer;
 }
 .pageNumWrapper i:active {
-  transform: scale(92%);
+  transform: scale(0.92); /* Correct scale function */
 }
 
 .error-message {
   color: rgb(245, 44, 44);
   font-size: 20px;
 }
-/* this is Recommendation bar */
 
+/* Recommendation Bar */
 .recommend-container {
   padding: 0 10px;
   overflow-y: hidden;
@@ -57,11 +59,12 @@
   padding: 10px 0;
   display: flex;
   gap: 15px;
-  overflow: scroll;
+  overflow-x: scroll; /* Added to ensure horizontal scrolling */
+  overflow-y: hidden; /* Prevent vertical scrolling */
 }
 
-/* this is playing area */
-.playing_area {
+/* Playing Area */
+.playing-area {
   position: absolute;
   z-index: 100;
   top: 0px;
@@ -76,8 +79,7 @@
   display: flex;
 }
 
-/* this is toggle container */
-
+/* Toggle Container */
 .toggleContainer {
   display: flex;
   align-items: center;

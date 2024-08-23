@@ -98,7 +98,17 @@ const MovieDetail = ({ props }) => {
             id="crossIcon"
             onClick={hideTrailerPlay}
           ></i>
-          {trailer ? (
+
+          {trailer === null ? (
+            <ReactLoading
+              type={"spinningBubbles"}
+              color={"#9b59b6"}
+              height={80}
+              width={80}
+            />
+          ) : trailer === undefined ? (
+            "Trailer not found !!"
+          ) : (
             <iframe
               width="100%"
               height="100%"
@@ -109,13 +119,6 @@ const MovieDetail = ({ props }) => {
               referrerPolicy="strict-origin-when-cross-origin"
               allowFullScreen
             ></iframe>
-          ) : (
-            <ReactLoading
-              type={"spinningBubbles"}
-              color={"#9b59b6"}
-              height={80}
-              width={80}
-            />
           )}
         </div>
         {showSeason && (
