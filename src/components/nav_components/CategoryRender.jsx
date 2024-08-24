@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Card from "../Card/Card";
 import ReactLoading from "react-loading";
+import Pagination from "@mui/material/Pagination";
+import Stack from "@mui/material/Stack";
 import {
   options,
   posterUrl,
@@ -10,13 +12,13 @@ import {
 
 function CategoryRender(props) {
   const [movie, setMovie] = useState([]);
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(1);
   const [totalPage, setTotalPage] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  const getMovieData = async () => {
-    const url = props.url;
+  const getMovieData = async (pageNumber = 1) => {
+    const url = `${props.url}&page=${pageNumber}`;
     try {
       setLoading(true);
       setError("");
@@ -29,7 +31,7 @@ function CategoryRender(props) {
       const data = await response.json();
 
       if (!data.results || data.results.length === 0) {
-        throw new Error("No Results !! ");
+        throw new Error("No Results !!");
       }
 
       setPage(data.page);
@@ -47,8 +49,12 @@ function CategoryRender(props) {
   };
 
   useEffect(() => {
-    getMovieData();
-  }, [props.url]);
+    getMovieData(page);
+  }, [props.url, page]);
+
+  const handlePageChange = (event, value) => {
+    setPage(value);
+  };
 
   return (
     <div className="working_area">
@@ -64,7 +70,7 @@ function CategoryRender(props) {
         ) : error ? (
           <div className="error-message">{error}</div>
         ) : (
-          movie.map((movie, index) => (
+          movie.map((movie) => (
             <Card
               key={movie.id}
               name={movie.original_title || movie.original_name}
@@ -78,23 +84,16 @@ function CategoryRender(props) {
         )}
       </div>
       <div className="pageNumWrapper flex">
-        <span
-          className="backBtn"
-          onClick={() => {
-            props.previousPage();
-          }}
-        >
-          <i className="fa-solid fa-arrow-left" title="previous page"></i>
-        </span>
-        <span className="pageNum">{`${page}`}</span>
-        <span
-          className="nextBtn"
-          onClick={() => {
-            props.nextPage(totalPage);
-          }}
-        >
-          <i className="fa-solid fa-arrow-right" title="next page"></i>
-        </span>
+        <Stack spacing={2} className="custom-pagination">
+          <Pagination
+            count={totalPage}
+            page={page}
+            onChange={handlePageChange}
+            shape="rounded"
+            defaultPage={1}
+            siblingCount={0}
+          />
+        </Stack>
       </div>
     </div>
   );

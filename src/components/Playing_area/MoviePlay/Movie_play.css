@@ -1,6 +1,6 @@
 .movieplay_container {
   border-radius: var(--container_borderRadius);
-  box-shadow: var(--container_shadow_dark);
+  /* box-shadow: var(--container_shadow_dark); */
   background: var(--container_color_darkest);
   position: relative;
   height: 85vh;

@@ -22,22 +22,26 @@
 
 .pageNumWrapper {
   gap: 10px;
-}
-.pageNumWrapper .pageNum {
-  color: orange;
-  font-size: 25px;
-  font-weight: 600;
-}
-.pageNumWrapper .backBtn,
-.nextBtn {
-  color: white;
-  font-size: 20px;
-  cursor: pointer;
-}
-.pageNumWrapper i:active {
-  transform: scale(92%);
+  display: flex;
+  padding: 10px 0;
 }
 
+.custom-pagination .MuiPaginationItem-root {
+  color: #969696;
+  font-size: 20px;
+}
+
+.custom-pagination .MuiPaginationItem-root.Mui-selected {
+  background-color: #000000;
+  color: #2bff00;
+}
+
+.custom-pagination .MuiPaginationItem-root:hover {
+  background-color: #3b3b3b8a;
+}
+.custom-pagination .MuiPaginationItem-icon {
+  font-size: 30px;
+}
 .error-message {
   color: rgb(245, 44, 44);
   font-size: 20px;
@@ -58,8 +62,6 @@
   overflow: scroll;
   cursor: grab;
 }
-
-
 
 /* this is playing area */
 .playing_area {
