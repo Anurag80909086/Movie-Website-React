@@ -2,7 +2,6 @@
   background-color: rgb(0, 0, 0, 0.9);
   border-radius: 18px;
   box-shadow: var(--card_shadow_dark);
-  border: 1px solid rgb(192, 192, 192);
   height: 96%;
   width: 98%;
   position: fixed;
@@ -111,7 +110,6 @@
 
 /* episodes Section */
 .episodesSection,
-.castContainer,
 .trailerContainer,
 .videosContainer {
   display: flex;

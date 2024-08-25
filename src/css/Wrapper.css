@@ -62,7 +62,6 @@
   overflow: scroll;
   cursor: grab;
 }
-
 /* this is playing area */
 .playing_area {
   position: absolute;

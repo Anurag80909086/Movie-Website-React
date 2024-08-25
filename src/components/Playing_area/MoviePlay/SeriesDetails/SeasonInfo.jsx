@@ -3,7 +3,6 @@ import { RxCross2 } from "react-icons/rx";
 import { posterUrl } from "../../../../api/apiConfig";
 import SeasonCard from "../../../Card/SeasonCard";
 import DetailsWrapper from "./DetailsWrapper";
-
 const SeasonInfo = (prop) => {
   const [showWrapper, setShowWrapper] = useState(false);
   const [seasons, setSeasons] = useState([]);

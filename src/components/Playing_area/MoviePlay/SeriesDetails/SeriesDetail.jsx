@@ -3,7 +3,6 @@ import { posterUrl, fetchApi, trailerKey } from "../../../../api/apiConfig";
 import "./SeriesDetails.css";
 import SeasonInfo from "./SeasonInfo";
 import ReactLoading from "react-loading";
-
 const MovieDetail = ({ props }) => {
   const [imageKey, setImageKey] = useState(Date.now());
   const [showPlay, setShowPlay] = useState(false);

@@ -17,6 +17,9 @@ const Recommend_section = ({ title, url }) => {
     borderRadius: "13px",
   };
 
+  const cssStyleZindex = {
+    zIndex: "0",
+  };
   const getMovieData = async () => {
     setLoading(true);
     setError(null);
@@ -57,6 +60,7 @@ const Recommend_section = ({ title, url }) => {
             freeMode={true}
             modules={[FreeMode]}
             className="mySwiper"
+            style={cssStyleZindex}
           >
             {movies.map((movie) => (
               <SwiperSlide key={movie.id} style={cssStyle}>
